@@ -63,15 +63,20 @@ public class Product {
 	public void setStock(int stock) {
 		this.stock = stock;
 	}
-
-
+// 코드 이중양택 
 	@Override
 	public String toString() {
-		return String.format("%s", pCode);
+		String str="";
+		if(pCode != null) {
+			str = pCode;			
+		}else {
+			str = pName;			
+		}		
+		return String.format("%s", str);
+		
+		
+		
+//		return String.format("%s %s", pCode == null ? "" : pCode, pName == null ? "" : pName );
 	}
-	
-	
-	
-	
-	
+		
 }

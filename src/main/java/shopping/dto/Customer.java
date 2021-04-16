@@ -90,7 +90,7 @@ public class Customer {
 
 	@Override
 	public String toString() {
-		return String.format("%s", cuNo);
+		return String.format("%s", cuName);
 	}
 
 

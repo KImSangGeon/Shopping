@@ -33,6 +33,7 @@ public class Main extends JFrame implements ActionListener {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					
 					Main frame = new Main();
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -78,6 +79,7 @@ public class Main extends JFrame implements ActionListener {
 		contentPane.add(pIn);
 		pIn.setLayout(new BoxLayout(pIn, BoxLayout.Y_AXIS));
 
+		
 		btnIn = new JButton("로그인");
 		btnIn.addActionListener(this);
 		btnIn.setMinimumSize(new Dimension(81, 23));
@@ -104,11 +106,12 @@ public class Main extends JFrame implements ActionListener {
 
 	protected void actionPerformedBtnIn(ActionEvent e) {
 		String passwd= String.valueOf(JPasswd.getPassword());
-		if (tFId.getText().trim().equals("tkdrjs7")&& passwd.equals("1234") ) {
+		if (tFId.getText().trim().equals("tkdrjs7")&&passwd.equals("1234")) {
 		TabbedUi frame = new TabbedUi();
 		frame.setVisible(true);	
 		JOptionPane.showMessageDialog(null, "헬게이트 오픈", "ㅠ.ㅠ", JOptionPane.WARNING_MESSAGE);
 		setVisible(false);
+		
 		}else {
 		JOptionPane.showMessageDialog(null, "너 누구야", "정지", JOptionPane.INFORMATION_MESSAGE);
 		tFId.setText("");

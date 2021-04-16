@@ -2,24 +2,39 @@ package shopping.impl;
 
 import static org.junit.Assert.fail;
 
+import java.sql.Connection;
 import java.util.List;
 
 import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
-import shopping.dao.SalesDao;
 import shopping.dto.Customer;
 import shopping.dto.Product;
 import shopping.dto.Sales;
+import shopping.util.JdbcConn;
 
 public class SalesImplTest {
 	
-	private static SalesDao dao = SalesImpl.getInstance();
+	private SalesImpl dao;
+//	private static Connection con;
 
 	@After
 	public void tearDown() throws Exception {
 		System.out.println();
+	}
+	
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+//		con = JdbcConn.getConnection();
+	}
+
+	@Before
+	public void setUp() throws Exception {
+		dao = SalesImpl.getInstance();
+//		dao.setCon(con);
 	}
 
 
@@ -74,15 +89,6 @@ public class SalesImplTest {
 		}
 	}
 
-	@Test
-	public void testSelectDetailBycustomer() {
-		System.out.printf("%s()%n", "testSelectDetailBycustomer");
-		List<Sales> list =dao.selectDetailBycustomer(new Customer(12001));
-		Assert.assertNotNull(list);
-		for(Sales s : list) {
-			System.out.println(s.toStringD());
-		}
-	}
 
 	@Test
 	public void testSelectDetailByProductAndCustoemr() {

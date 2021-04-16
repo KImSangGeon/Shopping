@@ -7,7 +7,14 @@ import shopping.dto.Product;
 public interface ProductDao {
 	
 	List<Product> selectProductByAll();
-	Product selectProductByNo(Product product);
+	//코드별 검색
+	List<Product> selectPcode();
+	
+	//제품별 검색
+	List<Product> selectPname();
+	
+	
+	Product selectByProInfo(Product product);
 	
 	int insertProduct(Product product);
 	int updateProduct(Product product);

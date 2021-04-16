@@ -2,17 +2,21 @@ package shopping_list;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.util.List;
+import java.util.Vector;
 
+import javax.swing.BoxLayout;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import shopping.dto.Product;
+import shopping.service.ProductService;
 import shopping.service.SalesService;
 import shopping_list.panel.ProductPanel;
-import java.awt.FlowLayout;
-import javax.swing.BoxLayout;
 
 public class ProductList extends JPanel {
 	private JTextField tFOption;
@@ -20,10 +24,19 @@ public class ProductList extends JPanel {
 	private JTextField tfProfit;
 	private ProductPanel pList;
 	private SalesService service;
+	private JComboBox cbProduct;
+	private ProductService	pService;
 
 	public ProductList() {
 		service = new SalesService();
+		pService = new ProductService();
+		
+		List<Product> prodList = pService.selectByPcode();
 		initialize();
+		
+		cbProduct.setModel(new DefaultComboBoxModel<Product>(new Vector<>(prodList)));		
+		cbProduct.setSelectedIndex(3);
+				
 	}
 	private void initialize() {
 		setLayout(new BorderLayout(0, 0));
@@ -38,8 +51,8 @@ public class ProductList extends JPanel {
 		JLabel lblOption = new JLabel("검색조건");
 		ptLeft.add(lblOption);
 		
-		JComboBox cbOption = new JComboBox();
-		ptLeft.add(cbOption);
+		cbProduct = new JComboBox<>();
+		ptLeft.add(cbProduct);
 		
 		tFOption = new JTextField();
 		ptLeft.add(tFOption);
@@ -80,5 +93,7 @@ public class ProductList extends JPanel {
 		pList.loadData();
 		add(pList, BorderLayout.CENTER);
 	}
+	
+	
 
 }

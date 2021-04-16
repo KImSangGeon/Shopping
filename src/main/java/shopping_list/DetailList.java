@@ -2,7 +2,10 @@ package shopping_list;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.util.List;
+import java.util.Vector;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -10,6 +13,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import shopping.dto.Customer;
+import shopping.dto.Product;
+import shopping.service.CustomerService;
+import shopping.service.ProductService;
 import shopping.service.SalesService;
 import shopping_list.panel.DetailPanel;
 
@@ -22,16 +29,28 @@ public class DetailList extends JPanel {
 	private JTextField tfProfit;
 	private DetailPanel pList;
 	private SalesService service;
+	private CustomerService Cservice;
+	private ProductService Pservice;
+	private JComboBox cbPsearch;
+	private JComboBox cbCsearch;
 
 	public DetailList() {
 		service = new SalesService();
+		Cservice = new CustomerService();
+		Pservice = new ProductService();
+		
+		List<Customer> cusList = Cservice.selectByName();
+		List<Product> proList = Pservice.selectByPname();
 		initialize();
+		
+		cbCsearch.setModel(new DefaultComboBoxModel<Customer>(new Vector<>(cusList)));
+		cbCsearch.setSelectedIndex(-1);
+		
+		cbPsearch.setModel(new DefaultComboBoxModel<Product>(new Vector<>(proList)));
+		cbPsearch.setSelectedIndex(-1);
 	}
 	private void initialize() {
-		setLayout(new BorderLayout(0, 0));
-		
-		
-		
+		setLayout(new BorderLayout(0, 0));		
 		
 		JPanel pTop = new JPanel();
 		add(pTop, BorderLayout.NORTH);
@@ -44,7 +63,7 @@ public class DetailList extends JPanel {
 		lblPsearch.setHorizontalAlignment(SwingConstants.CENTER);
 		pLeft1.add(lblPsearch);
 		
-		JComboBox cbPsearch = new JComboBox();
+		cbPsearch = new JComboBox();
 		pLeft1.add(cbPsearch);
 		
 		tfPsearch = new JTextField();
@@ -64,7 +83,7 @@ public class DetailList extends JPanel {
 		lblCsearch.setHorizontalAlignment(SwingConstants.CENTER);
 		pLeft2.add(lblCsearch);
 		
-		JComboBox cbCsearch = new JComboBox();
+		cbCsearch = new JComboBox();
 		pLeft2.add(cbCsearch);
 		
 		tfCsearch = new JTextField();

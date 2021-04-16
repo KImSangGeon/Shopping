@@ -11,16 +11,24 @@ import shopping.util.JdbcConn;
 public class SignImpl implements SignDao {
 	
 	private static final SignImpl instance =new SignImpl();
+	private Connection con;
 	
 	public static SignImpl getInstance(){
 		return instance;
 	}
+	
+	
+
+	public void setCon(Connection con) {
+		this.con = con;
+	}
+
+
 
 	@Override
 	public int insertSign(Sign sign) {
 		String sql = "insert into sign_in values(?, password(?), ?, ?, ?, ?)";
-		try(Connection con = JdbcConn.getConnection();
-				PreparedStatement pstmt = con.prepareStatement(sql)){
+		try(PreparedStatement pstmt = con.prepareStatement(sql)){
 			pstmt.setString(1, sign.getId());
 			pstmt.setString(2, sign.getPasswd());
 			pstmt.setString(3, sign.getName());

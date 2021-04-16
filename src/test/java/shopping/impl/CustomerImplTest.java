@@ -1,25 +1,41 @@
 package shopping.impl;
 
+import java.sql.Connection;
 import java.util.List;
 
 import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import shopping.dao.CustomerDao;
 import shopping.dto.Customer;
+import shopping.dto.Sales;
 import shopping.dto.Sign;
+import shopping.util.JdbcConn;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class CustomerImplTest {
 	
-	private static CustomerDao dao = CustomerImpl.getInstance();
+	private CustomerImpl dao;
+	/* private static Connection con; */
 
 	@After
 	public void tearDown() throws Exception {
 		System.out.println();
+	}
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+//		con = JdbcConn.getConnection();
+	}
+
+	@Before
+	public void setUp() throws Exception {
+		dao = CustomerImpl.getInstance();
+//		dao.setCon(con);
 	}
 
 	@Test
@@ -61,5 +77,14 @@ public class CustomerImplTest {
 		dao.selectByCustomerByAll().stream().forEach(System.out::println);
 		
 	}
+	@Test
+	public void test05SelectByName() {
+	System.out.printf("%s()%n", "testSelectDetailBycustomer");
+	List<Customer> list = dao.selectByName();
+	Assert.assertNotNull(list);
+	for(Customer c : list) {
+		System.out.println(c.getCuName());
+	}
 
+}
 }

@@ -17,7 +17,9 @@ public interface SalesDao {
 	
 	//DETAIL
 	List<Sales> selectDetail();
-	List<Sales> selectDetailBycustomer(Customer customer);
+	
+	//이름별 검색 고객
+	
 	List<Sales> selectDetailByProductAndCustoemr(Customer customer, Product product);
 	
 	

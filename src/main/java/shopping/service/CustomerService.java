@@ -7,10 +7,13 @@ import shopping.dto.Customer;
 import shopping.impl.CustomerImpl;
 
 public class CustomerService {
-	private CustomerDao customerDao = CustomerImpl.getInstance();
+	private CustomerDao dao = CustomerImpl.getInstance();
 	
 	public List<Customer> showCustomerView(){
-		return customerDao.selectByCustomerByAll();		
+		return dao.selectByCustomerByAll();		
+	}
+	public List<Customer> selectByName(){
+		return dao.selectByName();
 	}
 
 }

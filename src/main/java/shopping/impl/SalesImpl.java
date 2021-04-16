@@ -21,7 +21,11 @@ public class SalesImpl implements SalesDao {
 	public static SalesImpl getInstance() {
 		return instance;
 	}
-	private Sales getSale(ResultSet rs) throws SQLException {
+	
+	
+	
+
+	private Sales getSale(ResultSet rs) throws SQLException{
 		int orderNo = 0;
 		String date = null;
 		int orderNum = 0;
@@ -76,15 +80,13 @@ public class SalesImpl implements SalesDao {
 		return new Sales(orderNo, date, orderNum, cuNo, pCode, saleAmount, profit);
 		
 	}
-
 	@Override
 	public List<Sales> selectMain() {
-		String sql = "select date, order_no, ID, cu_no, cu_name, phone, "
+		String sql = "select date, order_no, ID, cu_no, cu_name, phone,"
 				+ "	p_code, order_num, Total_Sales from vw_shoppingmall";
 		try(Connection con = JdbcConn.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql);
 				ResultSet rs = pstmt.executeQuery()){
-			System.out.println(pstmt);
 			if(rs.next()) {
 				ArrayList<Sales> list = new ArrayList<Sales>();
 				do {
@@ -186,29 +188,7 @@ public class SalesImpl implements SalesDao {
 		return null;
 	}
 
-	@Override
-	public List<Sales> selectDetailBycustomer(Customer customer) {
-		String sql = "select order_no, date, p_code, p_name, ID,"
-				+ " cu_no, cu_name, order_num, price, "
-				+ "	Total_Sales, Profit_Cost"
-				+ " from vw_shoppingmall where cu_no = ? ";
-		try(Connection con = JdbcConn.getConnection();
-				PreparedStatement pstmt = con.prepareStatement(sql)){
-			pstmt.setInt(1, customer.getCuNo());
-			try(ResultSet rs = pstmt.executeQuery()){
-				if(rs.next()) {
-					ArrayList<Sales> list = new ArrayList<Sales>();
-					do {
-						list.add(getSale(rs));
-					}while(rs.next());
-					return list;
-				}
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
+
 
 	@Override
 	public List<Sales> selectDetailByProductAndCustoemr(Customer customer, Product product) {

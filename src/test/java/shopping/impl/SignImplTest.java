@@ -1,24 +1,37 @@
 package shopping.impl;
 
-import static org.junit.Assert.*;
+import java.sql.Connection;
 
 import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
-import shopping.dao.SignDao;
 import shopping.dto.Sign;
+import shopping.util.JdbcConn;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class SignImplTest {
 	
-	private static SignDao dao = SignImpl.getInstance();
+	private SignImpl dao;
+	private static Connection con;
 
 	@After
 	public void tearDown() throws Exception {
 		System.out.println();
+	}
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		con = JdbcConn.getConnection();
+	}
+
+	@Before
+	public void setUp() throws Exception {
+		dao = SignImpl.getInstance();
+		dao.setCon(con);
 	}
 
 	@Test

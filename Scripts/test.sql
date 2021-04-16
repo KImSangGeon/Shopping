@@ -41,3 +41,16 @@ select date, order_no, cu_no, ID, cu_name, phone, p_code, order_num, Total_Sales
  
 select order_no, date, p_code, p_name, ID, cu_no, cu_name, order_num, price, Total_Sales, Profit_Cost
  from vw_shoppingmall where cu_no =12001 and p_code ='PA';
+ 
+select * from product_information pi2 
+
+select cu_name from customer_information;
+
+select p_code from product_information;
+
+select p_code from product_information;
+select p_name from product_information;
+
+select cu_name from vw_shoppingmall where cu_no = 12001;
+
+select p_name from product_information;
