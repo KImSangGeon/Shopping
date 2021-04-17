@@ -21,4 +21,5 @@ public class SalesService {
 	public List<Sales>showDetailList(){
 		return dao.selectDetail();
 	}
+	
 }

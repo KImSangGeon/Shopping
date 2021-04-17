@@ -153,8 +153,6 @@ public class Sales {
 	}
 
 
-
-
 	@Override
 	public String toString() {//main
 		return String.format(

@@ -10,7 +10,6 @@ import shopping.service.SalesService;
 public class MainPanel extends AbstractCustomTablePanel<Sales> {
 	public MainPanel() {
 	}
-	 
 	private SalesService service;
 	@Override
 	public Sales getItem() {
@@ -30,13 +29,13 @@ public class MainPanel extends AbstractCustomTablePanel<Sales> {
 
 	@Override
 	public String[] getColumnNames() {
-		return new String[] {"날짜", "주문번호", "아이디", "고객번호", "고객명", "연락처", "제품코드", "주문수량", "판매액"};
+		return new String[] {"날짜", "주문번호", "아이디", "고객번호", "고객이름", "연락처", "제품코드", "주문수량", "판매액"};
 	}
 
 	@Override
 	protected void setAlignAndWidth() {
 		setTableCellAlign(SwingConstants.CENTER, 0, 1, 2, 3, 4, 5, 6, 7, 8);
-		setTableCellWidth(100, 250);	
+		setTableCellWidth(270, 100, 150, 150, 110, 270, 110, 100, 220);	
 	}
 	public void setService(SalesService service) {
 		this.service = service;
@@ -47,7 +46,7 @@ public class MainPanel extends AbstractCustomTablePanel<Sales> {
 	protected Object[] toArray(Sales t) {
 		return new Object[] 
 				{t.getDate(), t.getOrderNo(), t.getCuNo().getId(),
-				t.getCuNo(), t.getCuNo().getCuName(), t.getCuNo().getPhone(),
+				t.getCuNo().getCuNo(), t.getCuNo().getCuName(), t.getCuNo().getPhone(),
 				t.getpCode(), t.getOrderNum(), t.getSaleAmount()};
 	}
 

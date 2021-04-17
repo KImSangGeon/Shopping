@@ -39,12 +39,12 @@ public class ProductPanel extends AbstractCustomTablePanel<Sales> {
 	@Override
 	protected void setAlignAndWidth() {
 		 setTableCellAlign(SwingConstants.CENTER, 0, 1, 2, 3, 4, 5, 6, 7);
-		 setTableCellWidth(100, 250);		
+		 setTableCellWidth(270, 150, 110, 150, 100, 220, 220, 200);		
 	}
 
 	@Override
 	protected Object[] toArray(Sales t) {
-		return new Object[] {t.getDate(), t.getCuNo(), t.getpCode(), t.getpCode().getpName(), 
+		return new Object[] {t.getDate(), t.getCuNo().getCuNo(), t.getpCode(), t.getpCode().getpName(), 
 				t.getOrderNum(), t.getpCode().getPrice(), t.getSaleAmount(), t.getProfit()};
 	}
 

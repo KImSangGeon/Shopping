@@ -17,11 +17,10 @@ import shopping.dto.Product;
 import shopping.service.ProductService;
 import shopping.service.SalesService;
 import shopping_list.panel.ProductPanel;
+import shopping_list.panel.bottompanel.ProductBottom;
 
 public class ProductList extends JPanel {
 	private JTextField tFOption;
-	private JTextField tfAmount;
-	private JTextField tfProfit;
 	private ProductPanel pList;
 	private SalesService service;
 	private JComboBox cbProduct;
@@ -71,22 +70,9 @@ public class ProductList extends JPanel {
 		JButton btnAdd = new JButton("제품추가");
 		ptRight.add(btnAdd);
 		
-		JPanel pBottom = new JPanel();
+		ProductBottom pBottom = new ProductBottom();
 		add(pBottom, BorderLayout.SOUTH);
-		
-		JLabel lblAmount = new JLabel("총 주문수량");
-		pBottom.add(lblAmount);
-		
-		tfAmount = new JTextField();
-		pBottom.add(tfAmount);
-		tfAmount.setColumns(10);
-		
-		JLabel lblProfit = new JLabel("총 이익금액");
-		pBottom.add(lblProfit);
-		
-		tfProfit = new JTextField();
-		tfProfit.setColumns(10);
-		pBottom.add(tfProfit);
+		pBottom.setLayout(new GridLayout(1, 0, 0, 0));
 		
 		pList = new ProductPanel();
 		pList.setService(service);

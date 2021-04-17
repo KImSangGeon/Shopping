@@ -9,13 +9,11 @@ public class Product {
 	
 	public Product() {
 		super();
-	}
-	
+	}	
 
 	public Product(String pCode) {
 		this.pCode = pCode;
 	}
-
 
 	public Product(String pCode, String pName, int price, int stock) {
 		this.pCode = pCode;

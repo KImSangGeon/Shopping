@@ -32,8 +32,7 @@ public class Main extends JFrame implements ActionListener {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				try {
-					
+				try {				
 					Main frame = new Main();
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -92,7 +91,7 @@ public class Main extends JFrame implements ActionListener {
 		btnNew.addActionListener(this);
 		btnNew.setFont(new Font("맑은 고딕", Font.PLAIN, 12));
 		btnNew.setVerticalAlignment(SwingConstants.BOTTOM);
-		pIn.add(btnNew);
+		pIn.add(btnNew);		
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -106,11 +105,15 @@ public class Main extends JFrame implements ActionListener {
 
 	protected void actionPerformedBtnIn(ActionEvent e) {
 		String passwd= String.valueOf(JPasswd.getPassword());
-		if (tFId.getText().trim().equals("tkdrjs7")&&passwd.equals("1234")) {
+		if(tFId.getText().trim().equals("tkdrjs7")&&passwd.equals("1234")) {
+		setVisible(false);
+		
 		TabbedUi frame = new TabbedUi();
 		frame.setVisible(true);	
+		
+		
 		JOptionPane.showMessageDialog(null, "헬게이트 오픈", "ㅠ.ㅠ", JOptionPane.WARNING_MESSAGE);
-		setVisible(false);
+		
 		
 		}else {
 		JOptionPane.showMessageDialog(null, "너 누구야", "정지", JOptionPane.INFORMATION_MESSAGE);

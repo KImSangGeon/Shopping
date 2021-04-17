@@ -16,24 +16,28 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import shopping.Main;
+import shopping.dto.Sales;
 import shopping.service.SalesService;
 import shopping.ui.TabbedUi;
 import shopping_list.panel.MainPanel;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.text.DecimalFormat;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import com.toedter.calendar.JDateChooser;
+import shopping_list.panel.bottompanel.MainBottom;
 
 @SuppressWarnings("serial")
 public class Mainlist extends JPanel implements ActionListener {
-	private JTextField tFAmount;
-	private JTextField tFSales;
 	private MainPanel pList;
 	private SalesService service;
 	private JButton btnLogout;
 	private TabbedUi tab;
 	
 	
+	
+	//공부하기 태이블 샸다 내리기
 	public void setTab(TabbedUi tab) {
 		this.tab = tab;
 	}
@@ -44,29 +48,15 @@ public class Mainlist extends JPanel implements ActionListener {
 	public Mainlist() {
 		service = new SalesService();
 		initialize();
+		
+		
 	}
 	private void initialize() {
 		setLayout(new BorderLayout(0, 0));
 		
-		JPanel pBottom = new JPanel();
+		MainBottom pBottom = new MainBottom();
 		add(pBottom, BorderLayout.SOUTH);
-		pBottom.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		
-		JLabel lblAmount = new JLabel("총 주문 수량");
-		lblAmount.setHorizontalAlignment(SwingConstants.CENTER);
-		pBottom.add(lblAmount);
-		
-		tFAmount = new JTextField();
-		pBottom.add(tFAmount);
-		tFAmount.setColumns(10);
-		
-		JLabel lblSales = new JLabel("총 판매액 ");
-		lblSales.setHorizontalAlignment(SwingConstants.CENTER);
-		pBottom.add(lblSales);
-		
-		tFSales = new JTextField();
-		tFSales.setColumns(10);
-		pBottom.add(tFSales);
+		pBottom.setLayout(new GridLayout(1, 0, 0, 0));
 		
 		JPanel pTop = new JPanel();
 		add(pTop, BorderLayout.NORTH);
@@ -99,6 +89,8 @@ public class Mainlist extends JPanel implements ActionListener {
 		pList.loadData();
 		add(pList, BorderLayout.CENTER);
 	}
+	
+
 
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnLogout) {
