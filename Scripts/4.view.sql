@@ -28,3 +28,16 @@
  from vw_shoppingmall; 
  
 select  date, cu_no, p_code, p_name, order_num, price, Total_Sales, Profit_Cost from vw_shoppingmall;
+
+select date, cu_no, p_code, p_name, order_num, price, Total_Sales, Profit_Cost from vw_shoppingmall where p_name = '자전거';
+
+select date, cu_no, p_code, p_name, order_num,"
+				+ " price, Total_Sales, Profit_Cost"
+				+ "	from vw_shoppingmall where p_name = '자전거';
+			
+			select date, order_no, p_code, p_name, id, cu_no, cu_name, order_num, price, Total_Sales, Profit_Cost 
+ from vw_shoppingmall where cu_name = '홍길동' and p_name = '냉장고';
+
+
+select date, order_no, p_code, p_name, id, cu_no, cu_name, order_num, price, Total_Sales, Profit_Cost 
+				from vw_shoppingmall where p_name = '책상' and cu_name = '김지원'; 

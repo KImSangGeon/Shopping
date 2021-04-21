@@ -63,6 +63,7 @@ public class Main extends JFrame implements ActionListener {
 		pLogin.add(lblId);
 
 		tFId = new JTextField();
+		tFId.setHorizontalAlignment(SwingConstants.RIGHT);
 		pLogin.add(tFId);
 		tFId.setColumns(10);
 
@@ -71,13 +72,13 @@ public class Main extends JFrame implements ActionListener {
 		pLogin.add(lblpasswd);
 
 		JPasswd = new JPasswordField();
+		JPasswd.setHorizontalAlignment(SwingConstants.RIGHT);
 		pLogin.add(JPasswd);
 		JPasswd.setColumns(10);
 
 		JPanel pIn = new JPanel();
 		contentPane.add(pIn);
 		pIn.setLayout(new BoxLayout(pIn, BoxLayout.Y_AXIS));
-
 		
 		btnIn = new JButton("로그인");
 		btnIn.addActionListener(this);
@@ -109,16 +110,15 @@ public class Main extends JFrame implements ActionListener {
 		setVisible(false);
 		
 		TabbedUi frame = new TabbedUi();
-		frame.setVisible(true);	
+		frame.setVisible(true);		
 		
-		
-		JOptionPane.showMessageDialog(null, "헬게이트 오픈", "ㅠ.ㅠ", JOptionPane.WARNING_MESSAGE);
-		
+		JOptionPane.showMessageDialog(null, "헬게이트 오픈", "ㅠ.ㅠ", JOptionPane.WARNING_MESSAGE);		
 		
 		}else {
 		JOptionPane.showMessageDialog(null, "너 누구야", "정지", JOptionPane.INFORMATION_MESSAGE);
 		tFId.setText("");
 		JPasswd.setText("");
+		
 		}				
 						
 	}

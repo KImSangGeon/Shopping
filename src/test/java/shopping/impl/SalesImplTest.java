@@ -70,9 +70,28 @@ public class SalesImplTest {
 	}
 
 	@Test
-	public void testSelectProductByProInfo() {
-		System.out.printf("%s()%n", "testSelectProductByProInfo");
-		List<Sales> list = dao.selectProductByProInfo(new Product("PA"));
+	public void testSelectProductByPcode() {
+		System.out.printf("%s()%n", "testSelectProductByPcode");
+		List<Sales> list = dao.selectProductByPcode(new Product("PA"));
+		Assert.assertNotNull(list);
+		for(Sales s : list) {
+			System.out.println(s.toStringP());
+		}
+	}
+	
+	@Test
+	public void testSelectProductByPname() {
+		System.out.printf("%s()%n", "testSelectProductByPname");
+		List<Sales> list = dao.selectProductByPname("자전거");
+		Assert.assertNotNull(list);
+		for(Sales s : list) {
+			System.out.println(s.toStringP());
+		}
+	}
+	@Test
+	public void testSelectProductByCname() {
+		System.out.printf("%s()%n", "testSelectProductByCname");
+		List<Sales> list = dao.selectDetailByCname("홍길동");
 		Assert.assertNotNull(list);
 		for(Sales s : list) {
 			System.out.println(s.toStringP());
@@ -93,7 +112,7 @@ public class SalesImplTest {
 	@Test
 	public void testSelectDetailByProductAndCustoemr() {
 		System.out.printf("%s()%n", "testSelectDetailByProductAndCustoemr");
-		List<Sales> list = dao.selectDetailByProductAndCustoemr(new Customer(12001), new Product("PA"));
+		List<Sales> list = dao.selectDetailByProductAndCustoemr("냉장고", "홍길동");
 		Assert.assertNotNull(list);
 		for(Sales s : list) {
 			System.out.println(s.toStringD());

@@ -67,4 +67,10 @@ insert into sales_information values
 (0013, '2012.04.20', 2, 12006,'PG'),
 (0016, '2012.05.01', 7, 12003,'PB');
 
+select * from sales_information;
+desc sales_information ;
+insert into sales_information(order_no,date) values
+(20, '2021-04-18'),
+(19, '2021-04-18'),
+(18, '2021-04-18');
 alter table sales_information modify order_no int not null auto_increment;

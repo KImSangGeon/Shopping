@@ -17,8 +17,7 @@ public class ProductService {
 		return dao.selectPcode();
 	}
 	public List<Product> selectByPname(){
-		return dao.selectPname();
-		
+		return dao.selectPname();		
 	}
 
 }

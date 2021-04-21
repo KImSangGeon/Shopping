@@ -8,6 +8,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
+import javax.swing.JPopupMenu;
+import javax.swing.JRadioButtonMenuItem;
 
 public class SignPanel extends JPanel {
 	private JTextField tfID;
@@ -15,6 +17,8 @@ public class SignPanel extends JPanel {
 	private JPasswordField pf2;
 	private JTextField tfName;
 	private JTextField tfPhone;
+	private JRadioButton rbtFemale;
+	private JRadioButton rdtMale;
 
 	public SignPanel() {
 
@@ -29,6 +33,7 @@ public class SignPanel extends JPanel {
 		add(lblID);
 		
 		tfID = new JTextField();
+		tfID.setHorizontalAlignment(SwingConstants.RIGHT);
 		add(tfID);
 		tfID.setColumns(10);
 		
@@ -37,6 +42,7 @@ public class SignPanel extends JPanel {
 		add(lblPw1);
 		
 		pf1 = new JPasswordField();
+		pf1.setHorizontalAlignment(SwingConstants.RIGHT);
 		add(pf1);
 		
 		JLabel lblPw2 = new JLabel("비밀번호 확인");
@@ -44,6 +50,7 @@ public class SignPanel extends JPanel {
 		add(lblPw2);
 		
 		pf2 = new JPasswordField();
+		pf2.setHorizontalAlignment(SwingConstants.RIGHT);
 		add(pf2);
 		
 		JLabel lblName = new JLabel("이름");
@@ -51,6 +58,7 @@ public class SignPanel extends JPanel {
 		add(lblName);
 		
 		tfName = new JTextField();
+		tfName.setHorizontalAlignment(SwingConstants.RIGHT);
 		add(tfName);
 		tfName.setColumns(10);
 		
@@ -59,6 +67,7 @@ public class SignPanel extends JPanel {
 		add(lblPhone);
 		
 		tfPhone = new JTextField();
+		tfPhone.setHorizontalAlignment(SwingConstants.RIGHT);
 		add(tfPhone);
 		tfPhone.setColumns(10);
 		
@@ -70,12 +79,12 @@ public class SignPanel extends JPanel {
 		add(pSex);
 		pSex.setLayout(new GridLayout(0, 2, 0, 0));
 		
-		JRadioButton rbtFemale = new JRadioButton("여성");
+		rbtFemale = new JRadioButton("여성");
 		rbtFemale.setSelected(true);
 		rbtFemale.setHorizontalAlignment(SwingConstants.CENTER);
 		pSex.add(rbtFemale);
 		
-		JRadioButton rdtMale = new JRadioButton("남성");
+		rdtMale = new JRadioButton("남성");
 		rdtMale.setHorizontalAlignment(SwingConstants.CENTER);
 		pSex.add(rdtMale);
 	}

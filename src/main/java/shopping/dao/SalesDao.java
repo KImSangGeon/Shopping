@@ -13,14 +13,16 @@ public interface SalesDao {
 	
 	//PRODUCT
 	List<Sales> selectProduct();
-	List<Sales> selectProductByProInfo(Product product);
+	List<Sales> selectProductByPcode(Product product);
+	List<Sales> selectProductByPname(String pName);
 	
 	//DETAIL
 	List<Sales> selectDetail();
+	List<Sales> selectDetailByCname(String cuName);
 	
 	//이름별 검색 고객
 	
-	List<Sales> selectDetailByProductAndCustoemr(Customer customer, Product product);
+	List<Sales> selectDetailByProductAndCustoemr(String pName, String cuName);
 	
 	
 	

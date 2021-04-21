@@ -26,9 +26,6 @@ public class Sales {
 	}
 
 
-	public Sales(String date) {
-		this.date = date;
-	}
 
 
 	public Sales(String date, int saleAmount) {
@@ -57,7 +54,6 @@ public class Sales {
 		this.profit = profit;
 	}
 
-
 	public Sales(String date, Customer cuNo, Product pCode) {
 		this.date = date;
 		this.cuNo = cuNo;
@@ -82,6 +78,10 @@ public class Sales {
 		this.saleAmount = saleAmount;
 	}
 
+
+	public Sales(String date) {
+		this.date = date;
+	}
 
 	public int getOrderNo() {
 		return orderNo;

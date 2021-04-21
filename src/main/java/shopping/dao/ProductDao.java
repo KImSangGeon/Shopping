@@ -7,10 +7,10 @@ import shopping.dto.Product;
 public interface ProductDao {
 	
 	List<Product> selectProductByAll();
-	//코드별 검색
+	//코드별 검색, 콤보박스용
 	List<Product> selectPcode();
 	
-	//제품별 검색
+	//제품별 검색, 콤보박스용
 	List<Product> selectPname();
 	
 	

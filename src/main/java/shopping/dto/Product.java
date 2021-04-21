@@ -7,13 +7,11 @@ public class Product {
 	private int price;
 	private int stock;
 	
-	public Product() {
-		super();
-	}	
 
 	public Product(String pCode) {
 		this.pCode = pCode;
 	}
+
 
 	public Product(String pCode, String pName, int price, int stock) {
 		this.pCode = pCode;
@@ -22,11 +20,9 @@ public class Product {
 		this.stock = stock;
 	}
 
-
 	public String getpCode() {
 		return pCode;
 	}
-
 
 	public void setpCode(String pCode) {
 		this.pCode = pCode;

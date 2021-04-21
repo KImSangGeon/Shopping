@@ -19,15 +19,15 @@ public class DetailBottom extends JPanel {
 	private JLabel lblRProfit;
 	
 	private DecimalFormat df = new DecimalFormat("#,###원");
+	private List<Sales> saleList;
 
 
 	public DetailBottom() {
 		service = new SalesService();
+		saleList = service.showDetailList();
 
 		initialize();
-		setOrderNum();
-		setSales();
-		setProfit();
+		setBottomDetail();
 	}
 	private void initialize() {
 		setLayout(new GridLayout(0, 6, 0, 0));
@@ -57,22 +57,27 @@ public class DetailBottom extends JPanel {
 		add(lblRProfit);
 	}
 	
-	public void setOrderNum() {
-		List<Sales> saleList = service.showDetailList();
+	public JLabel getlblOrderNum() {
+		return lblROrderNum;
+	}
+	
+	public JLabel getlblSales() {
+		return lblRSales;
+	}
+	public JLabel getlblProfit() {
+		return lblRProfit;
+	}
+	
+	public void setBottomDetail() {
 		int totalOrderNum = saleList.parallelStream().mapToInt(Sales::getOrderNum).sum();
 		lblROrderNum.setText(totalOrderNum + "건");
-	}
-	
-	public void setSales() {
-		List<Sales> saleList = service.showDetailList();
+		
 		int totalSales = saleList.parallelStream().mapToInt(Sales::getSaleAmount).sum();
-		lblRSales.setText(df.format(totalSales));		
-	}
-	
-	public void setProfit() {
-		List<Sales> saleList = service.showDetailList();
+		lblRSales.setText(df.format(totalSales));	
+		
 		int totalProfit = saleList.parallelStream().mapToInt(Sales::getProfit).sum();
 		lblRProfit.setText(df.format(totalProfit));
 	}
+
 
 }

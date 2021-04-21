@@ -11,19 +11,21 @@ import javax.swing.SwingConstants;
 import shopping.dto.Sales;
 import shopping.service.SalesService;
 
+@SuppressWarnings("serial")
 public class ProductBottom extends JPanel {
 	private SalesService service;	
 	private JLabel lblROrderNum;
 	private JLabel lblRProfit;
 	
 	private DecimalFormat df = new DecimalFormat("#,###원");
+	private List<Sales> saleList;
+	
 	public ProductBottom() {
 		service = new SalesService();
-		
+		saleList = service.showProdcutList();
 		initialize();
 		//메서드 소환
-		setOrderNum();
-		setProfit();
+		setBottomProduct();
 	}
 	private void initialize() {
 		setLayout(new GridLayout(0, 4, 0, 0));
@@ -45,16 +47,20 @@ public class ProductBottom extends JPanel {
 		add(lblRProfit);
 	}
 	
-	public void setProfit() {
-		List<Sales> saleList = service.showProdcutList();
-		int totalSales = saleList.parallelStream().mapToInt(Sales::getProfit).sum();
-		lblRProfit.setText(df.format(totalSales));
+	public JLabel getlblOrderNum() {
+		return lblROrderNum;
 	}
 	
-	public void setOrderNum() {
-		List<Sales> saleList = service.showProdcutList();
+	public JLabel getlblProfit() {
+		return lblRProfit;
+	}
+	public void setBottomProduct() {
+		int totalSales = saleList.parallelStream().mapToInt(Sales::getProfit).sum();
+		lblRProfit.setText(df.format(totalSales));
+		
 		int totalOrder = saleList.parallelStream().mapToInt(Sales::getOrderNum).sum();
 		lblROrderNum.setText(totalOrder +"건");
 	}
+	
 
 }

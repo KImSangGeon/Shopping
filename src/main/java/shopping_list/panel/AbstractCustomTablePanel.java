@@ -1,5 +1,5 @@
 package shopping_list.panel;
-
+ 
 import java.awt.BorderLayout;
 import java.util.List;
 
@@ -42,6 +42,10 @@ public abstract class  AbstractCustomTablePanel<T> extends JPanel {
 		
 	}
 	
+//	public void SelectloadData(List<T> list) {
+//		selectList(list);
+//	}
+//	
 	public void  setPopupMenu(JPopupMenu popMenu) {
 		table.setComponentPopupMenu(popMenu);
 	}
@@ -88,6 +92,27 @@ public abstract class  AbstractCustomTablePanel<T> extends JPanel {
 			setTableCellWidth(100, 250);
 	
 	*/
+	}	
+	public  void selectList(List<T> list) {
+		Object[][] data = new Object[list.size()][];
+		for(int i = 0; i < data.length; i++) {
+			data[i] = toArray(list.get(i));
+		}
+		CustomTableModel model = new CustomTableModel(data, getColumnNames());
+		table.setModel(model);
+		
+		RowSorter<TableModel> sorter = new TableRowSorter<TableModel>(model);
+		table.setRowSorter(sorter);
+		
+		setAlignAndWidth();
+		/*
+			//컬럼내용 정렬
+			setTableCellAlign(SwingConstants.CENTER, 0, 1);
+			
+			//컬럼별 너비 조정
+			setTableCellWidth(100, 250);
+	
+		 */
 	}	
 	
 	

@@ -53,4 +53,10 @@ select p_name from product_information;
 
 select cu_name from vw_shoppingmall where cu_no = 12001;
 
-select p_name from product_information;
+select * from product_information;
+
+select date, order_no, ID, cu_no, cu_name, phone, p_code, order_num, Total_Sales from vw_shoppingmall where date = '2012-03-24';
+
+select date, order_no, p_code, p_name, id, cu_no, cu_name, order_num, price, Total_Sales, Profit_Cost from vw_shoppingmall where p_name =  '자전거';
+
+ select date, order_no, p_code, p_name,	id, cu_no, cu_name, order_num, price, Total_Sales, Profit_Cost from vw_shoppingmall where cu_name = '홍길동';

@@ -15,6 +15,7 @@ public class TabbedUi extends JFrame {
 	private Mainlist pMain;
 	private ProductList pProduct;
 	private DetailList pDetail;
+	
 
 	public TabbedUi() {
 		initialize();
@@ -35,6 +36,7 @@ public class TabbedUi extends JFrame {
 		tPane.addTab("Main", null, pMain, "메인화면");
 		
 		pProduct = new ProductList();
+		pProduct.setTab(this);
 		tPane.addTab("Product", null, pProduct, "제품별관리");
 		
 		pDetail = new DetailList();
