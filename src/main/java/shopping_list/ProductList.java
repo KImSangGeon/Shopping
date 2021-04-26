@@ -61,7 +61,7 @@ public class ProductList extends JPanel implements ActionListener {
 		JPanel ptLeft = new JPanel();
 		pTop.add(ptLeft);
 		
-		JLabel lblOption = new JLabel("검색조건");
+		JLabel lblOption = new JLabel("제품코드");
 		ptLeft.add(lblOption);
 		
 		cbProduct = new JComboBox<>();

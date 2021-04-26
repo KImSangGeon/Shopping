@@ -8,6 +8,8 @@ import shopping.service.SalesService;
 
 @SuppressWarnings("serial")
 public class ProductPanel extends AbstractCustomTablePanel<Sales> {
+	public ProductPanel() {
+	}
 	
 	private SalesService service;
 
