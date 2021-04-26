@@ -27,7 +27,7 @@ public class DetailBottom extends JPanel {
 		saleList = service.showDetailList();
 
 		initialize();
-		setBottomDetail();
+		setBottomDetail(saleList);
 	}
 	private void initialize() {
 		setLayout(new GridLayout(0, 6, 0, 0));
@@ -57,27 +57,15 @@ public class DetailBottom extends JPanel {
 		add(lblRProfit);
 	}
 	
-	public JLabel getlblOrderNum() {
-		return lblROrderNum;
-	}
 	
-	public JLabel getlblSales() {
-		return lblRSales;
-	}
-	public JLabel getlblProfit() {
-		return lblRProfit;
-	}
-	
-	public void setBottomDetail() {
-		int totalOrderNum = saleList.parallelStream().mapToInt(Sales::getOrderNum).sum();
+	public void setBottomDetail(List<Sales> list) {
+		int totalOrderNum = list.parallelStream().mapToInt(Sales::getOrderNum).sum();
 		lblROrderNum.setText(totalOrderNum + "건");
 		
-		int totalSales = saleList.parallelStream().mapToInt(Sales::getSaleAmount).sum();
+		int totalSales = list.parallelStream().mapToInt(Sales::getSaleAmount).sum();
 		lblRSales.setText(df.format(totalSales));	
 		
-		int totalProfit = saleList.parallelStream().mapToInt(Sales::getProfit).sum();
+		int totalProfit = list.parallelStream().mapToInt(Sales::getProfit).sum();
 		lblRProfit.setText(df.format(totalProfit));
 	}
-
-
 }

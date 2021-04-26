@@ -37,7 +37,7 @@ public class SignImplTest {
 	@Test
 	public void test01InsertSign() {
 		System.out.printf("%s()%n", "testInsertSign");
-		Sign newSign = new Sign("hhhh", "hhhh12", "김수준", "1999-06-05", "남자", "010-3302-1982");
+		Sign newSign = new Sign("iiii", "iiii12", "김상일", "1987-06-04", "남자", "010-3302-1992");
 		int res = dao.insertSign(newSign);
 		Assert.assertEquals(1, res);
 	}

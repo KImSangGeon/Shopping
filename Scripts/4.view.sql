@@ -41,3 +41,6 @@ select date, cu_no, p_code, p_name, order_num,"
 
 select date, order_no, p_code, p_name, id, cu_no, cu_name, order_num, price, Total_Sales, Profit_Cost 
 				from vw_shoppingmall where p_name = '책상' and cu_name = '김지원'; 
+			
+select ID, password, name, birth, phone, sex, from sign_in ;
+select * from sign_in si;

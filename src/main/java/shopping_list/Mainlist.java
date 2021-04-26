@@ -4,33 +4,28 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.List;
 
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
+
+import com.toedter.calendar.JDateChooser;
 
 import shopping.Main;
 import shopping.dto.Sales;
 import shopping.service.SalesService;
 import shopping.ui.TabbedUi;
 import shopping_list.panel.MainPanel;
-import java.awt.event.ActionListener;
-import java.io.File;
-import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.awt.event.ActionEvent;
-import com.toedter.calendar.JDateChooser;
 import shopping_list.panel.bottompanel.MainBottom;
-import javax.swing.BoxLayout;
 
 @SuppressWarnings("serial")
 public class Mainlist extends JPanel implements ActionListener {
@@ -38,19 +33,20 @@ public class Mainlist extends JPanel implements ActionListener {
 	private SalesService service;
 	private JButton btnLogout;
 	private TabbedUi tab;
-	private JButton btnSearch;
-	private List<Sales> list;
-
-	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-	private DecimalFormat df = new DecimalFormat("#,###원");
-
-	private String imgPath = System.getProperty("user.dir") + File.separator + "images" + File.separator;
-	ImageIcon icon = new ImageIcon(imgPath + "Shin.jpg");
+	private JButton btnSearch;	
 	private JDateChooser dateChooser;
 	private JPanel pTop;
 	private MainBottom pBottom;
 	private JPanel pReset;
 	private JButton btnReset;
+
+	private List<Sales> list;
+	
+	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+	private String imgPath = System.getProperty("user.dir") + File.separator + "images" + File.separator;
+	ImageIcon icon = new ImageIcon(imgPath + "Shin.jpg");
+
 
 	// 공부하기 태이블 샸다 내리기
 	public void setTab(TabbedUi tab) {
@@ -144,30 +140,20 @@ public class Mainlist extends JPanel implements ActionListener {
 		}
 	}
 
-	private void setNew() {
-		int totalOrder = list.parallelStream().mapToInt(Sales::getOrderNum).sum();
-		pBottom.getlblOrderNum().setText(totalOrder + "건");
-		
-		int totalSales = list.parallelStream().mapToInt(Sales::getSaleAmount).sum();
-		pBottom.getlblSales().setText(df.format(totalSales));
-		
-	}	
 
 	protected void actionPerformedBtnSearch(ActionEvent e) {
 		// 시간 포맷해서 리스트 불러내기.
-		Sales saleList = new Sales(sdf.format(dateChooser.getDate()));
-		list = service.selectByDate(saleList);
+		Sales searchByDate = new Sales(sdf.format(dateChooser.getDate()));
+		list = service.selectByDate(searchByDate);
+				
 		pList.selectList(list);
-		setNew();
-
-//		pList.loadData2(list);
-//		Sales saleList = new Sales();
-//		List<Sales> list = service.selectByDate();
+		pBottom.setBottomMain(list);
 
 	}
 	protected void actionPerformedBtnReset(ActionEvent e) {
 		pList.loadData();
-		pBottom.setBottomMain();
+		list = service.showMainList();
+		pBottom.setBottomMain(list);
 		
 	}
 }

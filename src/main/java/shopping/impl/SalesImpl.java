@@ -43,6 +43,7 @@ public class SalesImpl implements SalesDao {
 		try {
 			cuNo = new Customer(rs.getInt("cu_no"));
 		}catch(SQLException e) {}
+		
 		try {
 			orderNo = rs.getInt("order_no");
 		}catch(SQLException e) {}
@@ -70,6 +71,7 @@ public class SalesImpl implements SalesDao {
 		try {
 			saleAmount = rs.getInt("Total_Sales");
 		}catch(SQLException e) {}
+		
 		try {
 			profit = rs.getInt("Profit_Cost");
 		}catch(SQLException e) {}
@@ -258,11 +260,6 @@ public class SalesImpl implements SalesDao {
 		}
 		return null;
 	}
-
-
-
-
-
 	@Override
 	public int insertSales(Sales sales) {
 		// TODO Auto-generated method stub

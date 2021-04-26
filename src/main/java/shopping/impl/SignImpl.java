@@ -28,7 +28,8 @@ public class SignImpl implements SignDao {
 	@Override
 	public int insertSign(Sign sign) {
 		String sql = "insert into sign_in values(?, password(?), ?, ?, ?, ?)";
-		try(PreparedStatement pstmt = con.prepareStatement(sql)){
+		try(Connection con = JdbcConn.getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql)){
 			pstmt.setString(1, sign.getId());
 			pstmt.setString(2, sign.getPasswd());
 			pstmt.setString(3, sign.getName());

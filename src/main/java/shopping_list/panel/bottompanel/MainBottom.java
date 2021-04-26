@@ -15,8 +15,7 @@ import shopping.service.SalesService;
 public class MainBottom extends JPanel {
 	private JLabel lblROrderNum;
 	private JLabel lblRSales;
-	private SalesService service;
-	
+	private SalesService service;	
 
 	private DecimalFormat df = new DecimalFormat("#,###원");
 	private List<Sales> saleList;
@@ -27,7 +26,7 @@ public class MainBottom extends JPanel {
 		saleList = service.showMainList();
 		initialize();
 		
-		setBottomMain();	
+		setBottomMain(saleList);	
 	}
 	private void initialize() {
 		setLayout(new GridLayout(0, 4, 0, 0));
@@ -50,18 +49,13 @@ public class MainBottom extends JPanel {
 		
 		
 	}
-	public JLabel getlblOrderNum() {
-		return lblROrderNum;
-	}
-	public JLabel getlblSales() {
-		return lblRSales;
-	}
+
 	
-	public void setBottomMain() {
-		int totalSales = saleList.parallelStream().mapToInt(Sales::getSaleAmount).sum();
+	public void setBottomMain(List<Sales> list) {
+		int totalSales = list.parallelStream().mapToInt(Sales::getSaleAmount).sum();
 		lblRSales.setText(df.format(totalSales));
 		
-		int totalOrderNum = saleList.parallelStream().mapToInt(Sales::getOrderNum).sum();
+		int totalOrderNum = list.parallelStream().mapToInt(Sales::getOrderNum).sum();
 		lblROrderNum.setText(totalOrderNum + "건");
 				
 	}	

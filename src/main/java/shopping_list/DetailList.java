@@ -1,7 +1,6 @@
 package shopping_list;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -28,22 +27,28 @@ import shopping_list.panel.bottompanel.DetailBottom;
 
 @SuppressWarnings("serial")
 public class DetailList extends JPanel implements ActionListener {
-	private DetailPanel pList;
+
+	private JPanel pTop;
+	private JPanel pRight2;
+	private JButton btnReset;
+	private JButton btnC;
+	
 	private SalesService service;
 	private CustomerService cService;
 	private ProductService pService;
+	
 	private JComboBox<Product> cbPsearch;
 	private JComboBox<Customer> cbCsearch;
+	
 	private Product proSelect;
 	private Customer cuSelect;
+	private DetailPanel pList;	
 	private DetailBottom pBottom;
-	private JButton btnReset;
+	
 	private List<Sales> list;
 
 	private DecimalFormat df = new DecimalFormat("#,###원");
-	private JButton btnC;
-	private JPanel pTop;
-	private JPanel pRight2;
+
 
 	public DetailList() {
 		service = new SalesService();
@@ -58,8 +63,8 @@ public class DetailList extends JPanel implements ActionListener {
 		cbPsearch.setModel(new DefaultComboBoxModel<Product>(new Vector<>(proList)));
 		cbPsearch.setSelectedIndex(-1);
 				
-				cbCsearch.setModel(new DefaultComboBoxModel<Customer>(new Vector<>(cusList)));
-				cbCsearch.setSelectedIndex(-1);
+		cbCsearch.setModel(new DefaultComboBoxModel<Customer>(new Vector<>(cusList)));
+		cbCsearch.setSelectedIndex(-1);
 				
 						
 	}
@@ -116,22 +121,6 @@ public class DetailList extends JPanel implements ActionListener {
 	}
 	
 
-	public void setNew() {
-		int totalOrder = list.parallelStream().mapToInt(Sales::getOrderNum).sum();	
-		pBottom.getlblOrderNum().setText(totalOrder + "건");
-	
-		int totalSales = list.parallelStream().mapToInt(Sales::getSaleAmount).sum();
-		pBottom.getlblSales().setText(df.format(totalSales));
-
-		int totalProfit = list.parallelStream().mapToInt(Sales::getProfit).sum();
-		pBottom.getlblProfit().setText(df.format(totalProfit));
-	}
-
-	public void TopNew() {
-		cbPsearch.setSelectedIndex(-1);
-		cbCsearch.setSelectedIndex(-1);
-		pList.loadData();
-	}
 
 	public void actionPerformed(ActionEvent e) {
 		try {
@@ -158,7 +147,7 @@ public class DetailList extends JPanel implements ActionListener {
 		
 		list = service.selectByPnameAndCname(proSelect.getpName(), cuSelect.getCuName());
 		pList.selectList(list);
-		setNew();
+		pBottom.setBottomDetail(list);
 	}
 
 	protected void actionPerformedBtnP(ActionEvent e) {
@@ -166,7 +155,7 @@ public class DetailList extends JPanel implements ActionListener {
 		proSelect = (Product) cbPsearch.getSelectedItem();
 		list = service.selectByPname(proSelect.getpName());
 		pList.selectList(list);
-		setNew();
+		pBottom.setBottomDetail(list);
 	}
 
 	protected void actionPerformedBtnC(ActionEvent e) {
@@ -174,13 +163,16 @@ public class DetailList extends JPanel implements ActionListener {
 		cuSelect = (Customer) cbCsearch.getSelectedItem();
 		list = service.selectByCname(cuSelect.getCuName());
 		pList.selectList(list);
-		setNew();
+		pBottom.setBottomDetail(list);
 	}
 
 	protected void actionPerformedBtnReset(ActionEvent e) {
 		// 모두 리셋
-		TopNew();
-		pBottom.setBottomDetail();
+		cbPsearch.setSelectedIndex(-1);
+		cbCsearch.setSelectedIndex(-1);
+		pList.loadData();
+		list = service.showDetailList();
+		pBottom.setBottomDetail(list);
 	}
 
 }

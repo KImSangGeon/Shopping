@@ -5,9 +5,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.border.EmptyBorder;
+
+import shopping_list.DetailList;
 import shopping_list.Mainlist;
 import shopping_list.ProductList;
-import shopping_list.DetailList;
 
 public class TabbedUi extends JFrame {
 

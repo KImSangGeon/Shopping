@@ -2,6 +2,8 @@ package shopping_list;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.Vector;
 
@@ -12,7 +14,6 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import shopping.dto.Product;
 import shopping.dto.Sales;
@@ -21,26 +22,19 @@ import shopping.service.SalesService;
 import shopping.ui.TabbedUi;
 import shopping_list.panel.ProductPanel;
 import shopping_list.panel.bottompanel.ProductBottom;
-import java.awt.event.ActionListener;
-import java.text.DecimalFormat;
-import java.awt.event.ActionEvent;
-import javax.swing.SwingConstants;
 
+@SuppressWarnings("serial")
 public class ProductList extends JPanel implements ActionListener {
 	private ProductPanel pList;
-	private SalesService service;
 	private JComboBox<Product> cbProduct;
+	private SalesService service;
 	private ProductService	pService;
 	private JButton btnAdd;
 	private TabbedUi tab;
 	private JButton btnNew;
 	private JButton btnSearch;
 	private ProductBottom pBottom;
-	private List<Sales> list;
-	
-	private DecimalFormat df = new DecimalFormat("#,###원");
-	
-	
+	private List<Sales> list;	
 	
 	public void setTab(TabbedUi tab) {
 		this.tab = tab;
@@ -115,13 +109,6 @@ public class ProductList extends JPanel implements ActionListener {
 			actionPerformedBtnAdd(e);
 		}
 	}
-	public void setNew() {
-		int totalOrder = list.parallelStream().mapToInt(Sales::getOrderNum).sum();
-		pBottom.getlblOrderNum().setText(totalOrder + "건");
-		
-		int totalProfit = list.parallelStream().mapToInt(Sales::getProfit).sum();
-		pBottom.getlblProfit().setText(df.format(totalProfit));		
-	}
 	
 	
 	protected void actionPerformedBtnAdd(ActionEvent e) {
@@ -133,7 +120,8 @@ public class ProductList extends JPanel implements ActionListener {
 	protected void actionPerformedBtnNew(ActionEvent e) {
 		cbProduct.setSelectedIndex(-1);
 		pList.loadData();
-		pBottom.setBottomProduct();	
+		list = service.showProdcutList();
+		pBottom.setBottomProduct(list);	
 	
 	}
 	
@@ -141,6 +129,6 @@ public class ProductList extends JPanel implements ActionListener {
 		Product SelectPro =  (Product) cbProduct.getSelectedItem();
 		list = service.selectByPcode(SelectPro);
 		pList.selectList(list);
-		setNew();
+		pBottom.setBottomProduct(list);	
 	}
 }

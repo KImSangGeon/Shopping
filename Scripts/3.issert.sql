@@ -52,7 +52,6 @@ select * from sales_information si ;
 delete from sales_information 
 where order_no =1;
 
-
 insert into sales_information values
 (0001, '2012.03.24', 2, 12003,'PA'),
 (0002, '2012.03.27', 1, 12001,'PA'),

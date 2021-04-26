@@ -25,7 +25,7 @@ public class ProductBottom extends JPanel {
 		saleList = service.showProdcutList();
 		initialize();
 		//메서드 소환
-		setBottomProduct();
+		setBottomProduct(saleList);
 	}
 	private void initialize() {
 		setLayout(new GridLayout(0, 4, 0, 0));
@@ -47,18 +47,12 @@ public class ProductBottom extends JPanel {
 		add(lblRProfit);
 	}
 	
-	public JLabel getlblOrderNum() {
-		return lblROrderNum;
-	}
 	
-	public JLabel getlblProfit() {
-		return lblRProfit;
-	}
-	public void setBottomProduct() {
-		int totalSales = saleList.parallelStream().mapToInt(Sales::getProfit).sum();
+	public void setBottomProduct(List<Sales> list) {
+		int totalSales = list.parallelStream().mapToInt(Sales::getProfit).sum();
 		lblRProfit.setText(df.format(totalSales));
 		
-		int totalOrder = saleList.parallelStream().mapToInt(Sales::getOrderNum).sum();
+		int totalOrder = list.parallelStream().mapToInt(Sales::getOrderNum).sum();
 		lblROrderNum.setText(totalOrder +"건");
 	}
 	

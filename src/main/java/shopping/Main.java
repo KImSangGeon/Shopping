@@ -117,8 +117,7 @@ public class Main extends JFrame implements ActionListener {
 		}else {
 		JOptionPane.showMessageDialog(null, "너 누구야", "정지", JOptionPane.INFORMATION_MESSAGE);
 		tFId.setText("");
-		JPasswd.setText("");
-		
+		JPasswd.setText("");		
 		}				
 						
 	}
