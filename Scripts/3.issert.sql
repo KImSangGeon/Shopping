@@ -13,7 +13,7 @@ select * from sign_in;
 
 delete from product_information  
 where p_code ='PA';
-
+-- 3
 insert into product_information values
 ('PA', '책상', 10000, 3),
 ('PB', '냉장고', 36000, 5),
@@ -26,7 +26,7 @@ insert into product_information values
 
 delete from sign_in 
 where id ='aaaa';
-
+-- 1
 insert into sign_in values
 ('aaaa', 'aaaa12', '홍길동', 19770405, '남자', '010-9741-5821'),
 ('bbbb', 'bbbb12', '김연수', 19850301, '여자', '010-4568-5581'),
@@ -38,7 +38,7 @@ insert into sign_in values
 
 delete from customer_information 
 where cu_no = 12001;
-
+-- 2
 insert into customer_information values
 (12001, '홍길동', 19770405, '010-9741-5821', '남자', 'aaaa'),
 (12002, '김연수', 19850301, '010-4568-5581', '여자', 'bbbb'),
@@ -51,7 +51,7 @@ insert into customer_information values
 select * from sales_information si ;
 delete from sales_information 
 where order_no =1;
-
+-- 4
 insert into sales_information values
 (0001, '2012.03.24', 2, 12003,'PA'),
 (0002, '2012.03.27', 1, 12001,'PA'),
@@ -68,8 +68,28 @@ insert into sales_information values
 
 select * from sales_information;
 desc sales_information ;
-insert into sales_information(order_no,date) values
-(20, '2021-04-18'),
-(19, '2021-04-18'),
-(18, '2021-04-18');
-alter table sales_information modify order_no int not null auto_increment;
+
+insert into customer_information values
+(12008, '김이민', 20210409, '010-5555-5555', '남자', 'tkdrjs7'),
+(12009, '김민한', 20210406, '010-8888-8888', '남자', 'tkdrjs'),
+(12010, '김지연', 20210410, '010-9999-9999', '여성', 'dkdkdk'),
+(12011, '김미준', 20210408, '010-5555-555', '남성', 'dldigh');
+
+
+insert into sales_information values
+(0001, '2020.04.24', 2, 12003,'PA'),
+(0021, '2020.04.26', 10, 12008,'PC'),
+(0022, '2020.04.26', 5, 12008,'PF'),
+(0023, '2020.04.26', 4, 12009,'PE'),
+(0024, '2020.04.26', 10, 12010,'PC'),
+(0025, '2020.04.25', 5, 12011,'PD'),
+(0026, '2020.04.25', 4, 12011,'PG'),
+(0027, '2021.04.24', 2, 12001,'PA'),
+(0028, '2021.04.26', 10, 12002,'PB'),
+(0029, '2021.04.24', 8, 12003,'PF'),
+(0030, '2021.04.26', 2, 12004,'PB'),
+(0031, '2021.04.24', 2, 12005,'PG'),
+(0032, '2021.04.26', 1, 12006,'PH'),
+(0033, '2021.04.24', 5, 12007,'PD'),
+(0034, '2021.04.26', 1, 12008,'PF');
+

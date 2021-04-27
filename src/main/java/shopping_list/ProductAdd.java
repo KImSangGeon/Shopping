@@ -1,17 +1,21 @@
 package shopping_list;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import shopping.dto.Product;
+import shopping.exception.InvaildCheckException;
+import shopping.exception.SqlConstraintException;
+import shopping.service.ProductService;
 import shopping.ui.TabbedUi;
 import shopping_list.panel.AddPanel;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class ProductAdd extends JFrame implements ActionListener {
 
@@ -19,10 +23,13 @@ public class ProductAdd extends JFrame implements ActionListener {
 	private JButton btnCancel;
 	private JButton btnReset;
 	private AddPanel pItem;
+	private JButton btnAdd;
+	private ProductService service;
 	
 
 
 	public ProductAdd() {
+		service = new ProductService();
 		initialize();
 	}
 	private void initialize() {
@@ -39,7 +46,8 @@ public class ProductAdd extends JFrame implements ActionListener {
 		JPanel pBtns = new JPanel();
 		contentPane.add(pBtns, BorderLayout.SOUTH);
 		
-		JButton btnAdd = new JButton("추가");
+		btnAdd = new JButton("추가");
+		btnAdd.addActionListener(this);
 		pBtns.add(btnAdd);
 		
 		btnReset = new JButton("초기화");
@@ -52,6 +60,16 @@ public class ProductAdd extends JFrame implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		try {
+			if (e.getSource() == btnAdd) {
+				actionPerformedBtnAdd(e);
+			}
+		}catch (SqlConstraintException e1) {			
+			JOptionPane.showMessageDialog(null, "이미 등록된 제품입니다", "등록오류", JOptionPane.ERROR_MESSAGE);
+		}catch (InvaildCheckException e2) {
+			JOptionPane.showMessageDialog(null, "빈칸이 있습니다", "등록오류", JOptionPane.ERROR_MESSAGE);
+		}
+		
 		if (e.getSource() == btnReset) {
 			actionPerformedBtnReset(e);
 		}
@@ -66,6 +84,12 @@ public class ProductAdd extends JFrame implements ActionListener {
 		
 	}
 	protected void actionPerformedBtnReset(ActionEvent e) {
-		pItem.setPanel();
+		pItem.setProduct();
+	}
+	protected void actionPerformedBtnAdd(ActionEvent e) {
+		Product newProduct = pItem.getProduct();
+		service.insertProduct(newProduct);
+		pItem.setProduct();
+		JOptionPane.showMessageDialog(null, "제품 등록 ", "확인", JOptionPane.INFORMATION_MESSAGE);
 	}
 }

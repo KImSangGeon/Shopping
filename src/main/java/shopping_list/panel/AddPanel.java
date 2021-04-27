@@ -8,6 +8,10 @@ import javax.swing.SpinnerModel;
 import javax.swing.JSpinner;
 import javax.swing.SwingConstants;
 import javax.swing.event.ChangeListener;
+
+import shopping.dto.Product;
+import shopping.exception.InvaildCheckException;
+
 import javax.swing.SpinnerNumberModel;
 
 public class AddPanel extends JPanel {
@@ -58,7 +62,21 @@ public class AddPanel extends JPanel {
 		spStock.setModel(new SpinnerNumberModel(5, 1, 100, 1));
 		add(spStock);
 	}
-	public void setPanel() {
+	private void validCheck(){
+		if (tfPcode.getText().equals("") || tfPname.getText().equals("")){
+			throw new InvaildCheckException();
+		}
+	}
+	public Product getProduct() {
+		validCheck();
+		String pCode = tfPcode.getText().trim();
+		String pName = tfPname.getText().trim();
+		int price = (int)spPrice.getValue();
+		int stock = (int)spStock.getValue();		
+		return new Product(pCode, pName, price, stock);
+	}
+	
+	public void setProduct() {
 		tfPcode.setText("");
 		tfPname.setText("");
 		spPrice.setModel(new SpinnerNumberModel(0, 0, 2000000, 1000));

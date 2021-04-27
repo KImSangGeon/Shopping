@@ -1,15 +1,12 @@
 
 	-- 계정 권한 부여
 	grant all 
-	on shoppingmall_prj.* 
-	to 'user_shopping'@'localhost'identified by 'rootroot';
+	on shoppingmall_prj_ksg.* 
+	to 'user_shopping_ksg'@'localhost'identified by 'rootroot';
 
 grant File 
 on *.*
-to 'user_shopping'@'localhost';
-
-select * from customer_information ;
-
+to 'user_shopping_ksg'@'localhost';
 
 
 create or replace

@@ -9,6 +9,7 @@ import java.util.List;
 
 import shopping.dao.ProductDao;
 import shopping.dto.Product;
+import shopping.exception.SqlConstraintException;
 import shopping.util.JdbcConn;
 
 public class ProductImpl implements ProductDao {
@@ -96,9 +97,8 @@ public class ProductImpl implements ProductDao {
 			pstmt.setInt(4, product.getStock());
 			return pstmt.executeUpdate();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new SqlConstraintException();
 		}
-		return 0;
 	}
 
 	@Override
