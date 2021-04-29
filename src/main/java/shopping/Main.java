@@ -18,6 +18,10 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 
+import shopping.customerbuy.CustomerList;
+import shopping.dto.Sign;
+import shopping.exception.InvaildCheckException;
+import shopping.service.SignService;
 import shopping.ui.TabbedUi;
 import shopping_list.SignList;
 
@@ -28,13 +32,15 @@ public class Main extends JFrame implements ActionListener {
 	private JPasswordField JPasswd;
 	private JButton btnIn;
 	private JButton btnNew;
+	private SignService service;
+	private JPanel pLogin;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {				
 					Main frame = new Main();
-					frame.setVisible(true);
+					frame.setVisible(true); 
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -43,18 +49,19 @@ public class Main extends JFrame implements ActionListener {
 	}
 
 	public Main() {
+		service = new SignService();
 		initialize();
 	}
 
 	private void initialize() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(720, 350, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new TitledBorder(null, "Login", TitledBorder.LEFT, TitledBorder.TOP, null, null));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
 
-		JPanel pLogin = new JPanel();
+		pLogin = new JPanel();
 		contentPane.add(pLogin);
 		pLogin.setLayout(new GridLayout(0, 2, 10, 10));
 
@@ -63,6 +70,7 @@ public class Main extends JFrame implements ActionListener {
 		pLogin.add(lblId);
 
 		tFId = new JTextField();
+		tFId.setFont(new Font("굴림", Font.PLAIN, 30));
 		tFId.setHorizontalAlignment(SwingConstants.RIGHT);
 		pLogin.add(tFId);
 		tFId.setColumns(10);
@@ -72,6 +80,7 @@ public class Main extends JFrame implements ActionListener {
 		pLogin.add(lblpasswd);
 
 		JPasswd = new JPasswordField();
+		JPasswd.setFont(new Font("굴림", Font.PLAIN, 30));
 		JPasswd.setHorizontalAlignment(SwingConstants.RIGHT);
 		pLogin.add(JPasswd);
 		JPasswd.setColumns(10);
@@ -94,6 +103,19 @@ public class Main extends JFrame implements ActionListener {
 		btnNew.setVerticalAlignment(SwingConstants.BOTTOM);
 		pIn.add(btnNew);		
 	}
+	private void validCheck() {
+		if(tFId.getText().equals("") || JPasswd.getPassword().equals("")) {
+			throw new InvaildCheckException();
+		}
+	}
+	
+	
+	public Sign loginItemS() {
+		validCheck();
+		String id = tFId.getText().trim();
+		String passwd = String.valueOf(JPasswd.getPassword()).trim();
+		return new Sign(id, passwd);
+	}
 
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnNew) {
@@ -110,21 +132,30 @@ public class Main extends JFrame implements ActionListener {
 		setVisible(false);
 		
 		TabbedUi frame = new TabbedUi();
-		frame.setVisible(true);		
-		
+		frame.setVisible(true);				
 		JOptionPane.showMessageDialog(null, "헬게이트 오픈", "ㅠ.ㅠ", JOptionPane.WARNING_MESSAGE);		
 		
 		}else {
-		JOptionPane.showMessageDialog(null, "너 누구야", "정지", JOptionPane.INFORMATION_MESSAGE);
-		tFId.setText("");
-		JPasswd.setText("");		
-		}				
-						
+		Sign login = loginItemS();
+		Sign loginCustomer = service.loginCustomer(login);
+		
+		if(loginCustomer != null) {
+		setVisible(false);
+		
+		CustomerList frame = new CustomerList();		
+		frame.setId(tFId.getText());
+		frame.setVisible(true);
+		JOptionPane.showMessageDialog(null, "환영합니다 고객님", "^.^", JOptionPane.INFORMATION_MESSAGE);
+		
+		}else {
+			JOptionPane.showMessageDialog(null, "아이디, 비밀번호가 틀렸습니다.", "로그인 실패", JOptionPane.ERROR_MESSAGE);
+		}
+		}								
+	
 	}
 	protected void actionPerformedBtnNew(ActionEvent e) {
 		SignList frame = new SignList();
 		frame.setVisible(true);
 		setVisible(false);
-		
 	}
 }

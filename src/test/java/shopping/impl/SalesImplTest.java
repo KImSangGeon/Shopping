@@ -14,6 +14,7 @@ import org.junit.Test;
 import shopping.dto.Customer;
 import shopping.dto.Product;
 import shopping.dto.Sales;
+import shopping.dto.Sign;
 import shopping.util.JdbcConn;
 
 public class SalesImplTest {
@@ -38,7 +39,7 @@ public class SalesImplTest {
 	}
 
 
-	@Test
+//	@Test
 	public void testSelectMain() {
 		System.out.printf("%s()%n", "testSelectMain");
 		List<Sales> salesList = dao.selectMain();
@@ -48,7 +49,7 @@ public class SalesImplTest {
 		}
 	}
 
-	@Test
+//	@Test
 	public void testSelectMainByDate() {
 		System.out.printf("%s()%n", "testSelectMainByDate");
 		Sales sales = new Sales("2012-04-14");
@@ -58,8 +59,18 @@ public class SalesImplTest {
 			System.out.println(s);
 		}
 	}
+	
+//	@Test
+	public void testSelectProductAddTotalPrice() {
+		System.out.printf("%s()%n", "testSelectProductAddTotalPrice");
+		List<Sales> salesList = dao.selectProductAddTotalPrice("aaaa");
+		Assert.assertNotNull(salesList);
+		for(Sales s :salesList) {
+			System.out.println(s.toStringP2());
+		}		
+	}
 
-	@Test
+//	@Test
 	public void testSelectProduct() {
 		System.out.printf("%s()%n", "testSelectProduct");
 		List<Sales> salesList = dao.selectProduct();
@@ -69,7 +80,7 @@ public class SalesImplTest {
 		}
 	}
 
-	@Test
+//	@Test
 	public void testSelectProductByPcode() {
 		System.out.printf("%s()%n", "testSelectProductByPcode");
 		List<Sales> list = dao.selectProductByPcode(new Product("PA"));
@@ -79,7 +90,7 @@ public class SalesImplTest {
 		}
 	}
 	
-	@Test
+//	@Test
 	public void testSelectProductByPname() {
 		System.out.printf("%s()%n", "testSelectProductByPname");
 		List<Sales> list = dao.selectProductByPname("자전거");
@@ -88,7 +99,7 @@ public class SalesImplTest {
 			System.out.println(s.toStringP());
 		}
 	}
-	@Test
+//	@Test
 	public void testSelectProductByCname() {
 		System.out.printf("%s()%n", "testSelectProductByCname");
 		List<Sales> list = dao.selectDetailByCname("홍길동");
@@ -97,8 +108,10 @@ public class SalesImplTest {
 			System.out.println(s.toStringP());
 		}
 	}
+	
+	
 
-	@Test
+//	@Test
 	public void testSelectDetail() {
 		System.out.printf("%s()%n", "testSelectDetail");
 		List<Sales> detailList = dao.selectDetail();
@@ -109,7 +122,7 @@ public class SalesImplTest {
 	}
 
 
-	@Test
+//	@Test
 	public void testSelectDetailByProductAndCustoemr() {
 		System.out.printf("%s()%n", "testSelectDetailByProductAndCustoemr");
 		List<Sales> list = dao.selectDetailByProductAndCustoemr("냉장고", "홍길동");
@@ -129,9 +142,14 @@ public class SalesImplTest {
 		fail("Not yet implemented");
 	}
 
-	@Test
+//	@Test
 	public void testDeleteSales() {
-		fail("Not yet implemented");
+		System.out.printf("%s()%n", "testDeleteSales");
+		int res = dao.deleteSales(new Sales(11));
+		Assert.assertEquals(1, res);
+		System.out.println("success >>");
+		
+		
 	}
 
 }

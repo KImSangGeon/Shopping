@@ -8,6 +8,10 @@ public class Product {
 	private int stock;
 	
 
+	public Product() {
+	}
+
+
 	public Product(String pCode) {
 		this.pCode = pCode;
 	}
@@ -57,6 +61,10 @@ public class Product {
 	public void setStock(int stock) {
 		this.stock = stock;
 	}
+	
+	public String ProductInfo() {
+		return String.format("%s, %s, %s, %s", pCode, pName, price, stock);
+	}
 // 코드 이중양택 
 	@Override
 	public String toString() {
@@ -70,7 +78,36 @@ public class Product {
 		
 		
 		
+		
+		
 //		return String.format("%s %s", pCode == null ? "" : pCode, pName == null ? "" : pName );
+	}
+
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((pCode == null) ? 0 : pCode.hashCode());
+		return result;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Product other = (Product) obj;
+		if (pCode == null) {
+			if (other.pCode != null)
+				return false;
+		} else if (!pCode.equals(other.pCode))
+			return false;
+		return true;
 	}
 		
 }

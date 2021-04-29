@@ -100,7 +100,7 @@ public class ProductList extends JPanel implements ActionListener {
 			actionPerformedBtnSearch(e);
 		}
 		}catch (NullPointerException e1) {
-			JOptionPane.showMessageDialog(null, "제품이 없습니다.", "재고없음" ,JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(null, "판매되지 않은 제품입니다", "판매안된상품" ,JOptionPane.WARNING_MESSAGE);
 		}
 		if (e.getSource() == btnNew) {
 			actionPerformedBtnNew(e);
@@ -121,8 +121,7 @@ public class ProductList extends JPanel implements ActionListener {
 		cbProduct.setSelectedIndex(-1);
 		pList.loadData();
 		list = service.showProdcutList();
-		pBottom.setBottomProduct(list);	
-	
+		pBottom.setBottomProduct(list);		
 	}
 	
 	protected void actionPerformedBtnSearch(ActionEvent e) {

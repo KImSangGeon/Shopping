@@ -92,6 +92,9 @@ public class SignList extends JFrame implements ActionListener {
 
 	protected void actionPerformedBtnAdd(ActionEvent e) {		
 		pMain.getResult();
+		goMain();
+		 
+		
 		
 	}
 }

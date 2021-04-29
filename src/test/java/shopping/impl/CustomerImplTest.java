@@ -62,7 +62,7 @@ public class CustomerImplTest {
 	@Test
 	public void test02InsertCustomer() {
 		System.out.printf("%s()%n", "testInsertCustomer");
-		Customer newCu = new Customer(12008, "김미지", "1988-08-08", "010-3321-1920", "여자", new Sign("hhhh"));
+		Customer newCu = new Customer(new Sign("tttt"), "김민지", "2000-04-03",  "여성", "010-4444-3333");
 		int res = dao.insertCustomer(newCu);
 		Assert.assertEquals(1, res);
 		System.out.println(dao.selectCustomerByNo(newCu));

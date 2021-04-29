@@ -99,15 +99,17 @@ public class CustomerImpl implements CustomerDao {
 
 	@Override
 	public int insertCustomer(Customer customer) {
-		String sql = "insert into customer_information values(?, ?, ?, ?, ?, ?)";
+		String sql = "insert into customer_information"
+				+ "	(ID, cu_name, birth, sex , phone) values" 
+				+ "	(?, ?, ?, ?, ?)";
 		try (Connection con = JdbcConn.getConnection();
-				PreparedStatement pstmt = con.prepareStatement(sql)) {
-			pstmt.setInt(1, customer.getCuNo());
+			PreparedStatement pstmt = con.prepareStatement(sql)) {
+			pstmt.setString(1, customer.getId().getId());
 			pstmt.setString(2, customer.getCuName());
-			pstmt.setString(3, customer.getBirth());
-			pstmt.setString(4, customer.getPhone());
-			pstmt.setString(5, customer.getSex());
-			pstmt.setString(6, customer.getId().getId());
+			pstmt.setString(3, customer.getBirth());			
+			pstmt.setString(4, customer.getSex());
+			pstmt.setString(5, customer.getPhone());
+		
 			return pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

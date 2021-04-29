@@ -24,7 +24,7 @@ public class ProductImpl implements ProductDao {
 
 	@Override
 	public List<Product> selectProductByAll() {
-		String sql = "select p_code,p_name,price,stock from product_information";
+		String sql = "select p_code, p_name, price, stock from product_information";
 		try (Connection con = JdbcConn.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql);
 				ResultSet rs = pstmt.executeQuery()) {
@@ -168,6 +168,7 @@ public class ProductImpl implements ProductDao {
 		}
 		return null;
 	}
+
 
 
 

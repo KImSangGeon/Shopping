@@ -5,8 +5,9 @@
    si.order_no, si.p_code, 
    ci.cu_no, ci.cu_name, 
    ci.phone, ci.ID,
-   pi.p_name, pi.price,
-   (pi.price * si.order_num) *1.1 as Total_ Sales,
+   pi.p_name, pi.price, pi.stock,
+   (pi.price * si.order_num) as Customer_Price,
+   (pi.price * si.order_num) *1.1 as Total_Sales,
    ((pi.price * si.order_num)* 1.1) - (pi.price * si.order_num) as Profit_Cost
    from sales_information si join customer_information ci on si.cu_no = ci.cu_no 
    join product_information pi on si.p_code = pi.p_code; 
@@ -44,3 +45,6 @@ select date, order_no, p_code, p_name, id, cu_no, cu_name, order_num, price, Tot
 			
 select ID, password, name, birth, phone, sex, from sign_in ;
 select * from sign_in si;
+
+
+select p_code, p_name, order_num, price, Customer_Price from vw_shoppingmall;

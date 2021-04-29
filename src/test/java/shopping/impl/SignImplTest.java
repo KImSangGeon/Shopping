@@ -17,21 +17,15 @@ import shopping.util.JdbcConn;
 public class SignImplTest {
 	
 	private SignImpl dao;
-	private static Connection con;
 
 	@After
 	public void tearDown() throws Exception {
 		System.out.println();
 	}
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-		con = JdbcConn.getConnection();
-	}
 
 	@Before
 	public void setUp() throws Exception {
 		dao = SignImpl.getInstance();
-		dao.setCon(con);
 	}
 
 	@Test
@@ -40,6 +34,15 @@ public class SignImplTest {
 		Sign newSign = new Sign("iiii", "iiii12", "김상일", "1987-06-04", "남자", "010-3302-1992");
 		int res = dao.insertSign(newSign);
 		Assert.assertEquals(1, res);
+	}
+	
+	@Test
+	public void test02loginSign() {
+		System.out.printf("%s()%n", "test02loginSign");
+		Sign newSign = new Sign("tkdrjs8", "tkdrjs12");
+		Sign loginCustomer = dao.LoginSign(newSign);
+		Assert.assertNotNull(loginCustomer);
+		System.out.println(loginCustomer);
 	}
 
 }

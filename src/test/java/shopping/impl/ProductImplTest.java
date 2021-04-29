@@ -39,7 +39,7 @@ public class ProductImplTest {
 		Assert.assertNotNull(productList);
 		
 		for(Product p : productList) {
-			System.out.println(p);
+			System.out.println(p.ProductInfo());
 		}
 	}
 	@Test

@@ -13,6 +13,7 @@ import shopping.dto.Product;
 import shopping.exception.InvaildCheckException;
 
 import javax.swing.SpinnerNumberModel;
+import java.awt.Font;
 
 public class AddPanel extends JPanel {
 	private JTextField tfPcode;
@@ -33,6 +34,7 @@ public class AddPanel extends JPanel {
 		add(lblPcode);
 		
 		tfPcode = new JTextField();
+		tfPcode.setFont(new Font("굴림", Font.PLAIN, 20));
 		tfPcode.setHorizontalAlignment(SwingConstants.RIGHT);
 		add(tfPcode);
 		tfPcode.setColumns(10);
@@ -42,6 +44,7 @@ public class AddPanel extends JPanel {
 		add(lblPname);
 		
 		tfPname = new JTextField();
+		tfPname.setFont(new Font("굴림", Font.PLAIN, 20));
 		tfPname.setHorizontalAlignment(SwingConstants.RIGHT);
 		tfPname.setColumns(10);
 		add(tfPname);
@@ -51,6 +54,7 @@ public class AddPanel extends JPanel {
 		add(lblPrice);
 		
 		spPrice = new JSpinner();
+		spPrice.setFont(new Font("굴림", Font.PLAIN, 20));
 		spPrice.setModel(new SpinnerNumberModel(10000, 5000, 2000000, 1000));
 		add(spPrice);
 		
@@ -59,6 +63,7 @@ public class AddPanel extends JPanel {
 		add(lblStock);
 		
 		spStock = new JSpinner();
+		spStock.setFont(new Font("굴림", Font.PLAIN, 20));
 		spStock.setModel(new SpinnerNumberModel(5, 1, 100, 1));
 		add(spStock);
 	}

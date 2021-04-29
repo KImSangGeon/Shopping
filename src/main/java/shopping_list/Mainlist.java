@@ -135,9 +135,7 @@ public class Mainlist extends JPanel implements ActionListener {
 			frame.setVisible(true);
 
 		}
-		if (res == JOptionPane.NO_OPTION) {
-
-		}
+	
 	}
 
 

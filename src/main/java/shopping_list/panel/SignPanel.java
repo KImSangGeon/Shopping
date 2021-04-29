@@ -15,8 +15,10 @@ import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 
 import shopping.Main;
+import shopping.dto.Customer;
 import shopping.dto.Sign;
 import shopping.exception.InvaildCheckException;
+import shopping.service.CustomerService;
 import shopping.service.SignService;
 import shopping_list.SignList;
 
@@ -37,13 +39,15 @@ public class SignPanel extends JPanel {
 	private JLabel lblBirth;
 	private JDateChooser dCbirth;
 	private SignList signtab;
-
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	private CustomerService cService;
 	private SignService service;
 
 	public SignPanel() {
-
-		initialize();
 		service = new SignService();
+		cService = new CustomerService();
+		initialize();
+		
 	}
 
 	public void setSigntab(SignList signtab) {
@@ -129,27 +133,43 @@ public class SignPanel extends JPanel {
 	public void getResult() {
 		String pw1 = new String(pf1.getPassword());
 		String pw2 = new String(pf2.getPassword());
-		if (pw1.equals(pw2)) {
-			Sign newSign = getJoin();
-			service.insertCustomer(newSign);
+		if (pw1.equals(pw2)) {		
+			Sign newSign = getJoinS();
+			service.insertCustomer(newSign);	
+			Customer newCus = getJoinC();
+			cService.InsertCustomer(newCus);	
 			JOptionPane.showMessageDialog(null, "회원 가입 되었습니다.", "등록", JOptionPane.PLAIN_MESSAGE);
-			signtab.setVisible(false);
-			signtab.goMain();
-			
 			
 		} else {
 			JOptionPane.showMessageDialog(null, "비밀번호가 일치하지않습니다.", "등록실패", JOptionPane.WARNING_MESSAGE);
 			pf1.setText("");
 			pf2.setText("");
 		}
-	}
+		
+		
+//		signtab.setVisible(false);
+//		signtab.goMain();
 
-	public Sign getJoin(){
+		
+		
+	}
+	public Customer getJoinC() {
+		validCheck();
+		String idadd = tfID.getText().trim();
+		Sign id = new Sign(idadd);
+		String cuName = tfName.getText().trim();
+		String birth = sdf.format(dCbirth.getDate());
+		String sex = rbtFemale.isSelected() ? "여성" : "남성";
+		String phone = tfPhone.getText().trim();				
+				
+		return new Customer(id, cuName, birth, sex, phone);
+	}
+	public Sign getJoinS(){
 		validCheck();
 		String CuID = tfID.getText().trim();
 		String pass = String.valueOf(pf1.getPassword());
 		String name = tfName.getText().trim();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
 		String birth = sdf.format(dCbirth.getDate());
 
 		String sex = rbtFemale.isSelected() ? "여성" : "남성";

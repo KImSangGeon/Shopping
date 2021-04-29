@@ -15,6 +15,11 @@ public class Sign {
 		this.id = id;
 	}
 
+	public Sign(String id, String passwd) {
+		this.id = id;
+		this.passwd = passwd;
+	}
+
 	public Sign(String id, String passwd, String name, String birth, String sex, String phone) {
 		this.id = id;
 		this.passwd = passwd;

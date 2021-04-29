@@ -19,8 +19,14 @@ public class ProductService {
 	public List<Product> selectByPname(){
 		return dao.selectPname();		
 	}
+
+	public List<Product> selectByProductAll(){
+		return dao.selectProductByAll();
+	}
+	
 	public int insertProduct(Product product) {
 		return dao.insertProduct(product);
 	}
+	
 
 }

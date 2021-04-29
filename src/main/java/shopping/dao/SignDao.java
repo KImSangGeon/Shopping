@@ -9,4 +9,5 @@ public interface SignDao {
 	
 	int insertSign(Sign sign);
 	
+	Sign LoginSign(Sign sign);	
 }

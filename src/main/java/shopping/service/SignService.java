@@ -11,5 +11,8 @@ public class SignService {
 	public void insertCustomer(Sign sign) {
 		dao.insertSign(sign);
 	}
+	public Sign loginCustomer(Sign sign) {
+		return dao.LoginSign(sign);
+	}
 
 }

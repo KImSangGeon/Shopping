@@ -22,9 +22,7 @@ public abstract class  AbstractCustomTablePanel<T> extends JPanel {
 	protected List<T> list;
 
 	public AbstractCustomTablePanel() {
-
-		initialize();
-	
+		initialize();	
 
 	}
 	public abstract T getItem(); 
@@ -38,8 +36,7 @@ public abstract class  AbstractCustomTablePanel<T> extends JPanel {
 	*/
 	public void loadData() {
 		initList();
-		setList();
-		
+		setList();		
 	}
 	
 //	public void SelectloadData(List<T> list) {

@@ -18,6 +18,15 @@ public class Customer {
 	}
 
 
+	public Customer(Sign id, String cuName, String birth, String sex,  String phone) {
+		this.id = id;
+		this.cuName = cuName;		
+		this.birth = birth;		
+		this.sex = sex;
+		this.phone = phone;		
+	}
+
+
 	public Customer(int cuNo, String cuName, String birth, String phone, String sex, Sign id) {
 		this.cuNo = cuNo;
 		this.cuName = cuName;		
@@ -26,6 +35,8 @@ public class Customer {
 		this.sex = sex;
 		this.id = id;
 	}
+
+
 
 	public int getCuNo() {
 		return cuNo;
