@@ -18,6 +18,7 @@ import shopping.dto.Customer;
 import shopping.dto.Product;
 import shopping.dto.Sales;
 import shopping.dto.Sign;
+import shopping.exception.InvaildCheckException;
 import shopping.service.ProductService;
 import shopping.service.SalesService;
 
@@ -36,6 +37,7 @@ public class CustomerList extends JFrame implements ActionListener {
 	private JButton btnInfo;
 	private JButton btnLogout;
 	private String id;
+	private List<Sales> list;
 	
 	public String getId() {
 		return id;
@@ -94,12 +96,22 @@ public class CustomerList extends JFrame implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == btnBuy) {
-			actionPerformedBtnBuy(e);
+		try {
+			if (e.getSource() == btnBuy) {
+				actionPerformedBtnBuy(e);
+			}
+		}catch (InvaildCheckException e1) {
+			JOptionPane.showMessageDialog(null, "주문하시려는 정보가 부족합니다.", "빈칸있음", JOptionPane.ERROR_MESSAGE );
 		}
-		if (e.getSource() == btnCheck) {
-			actionPerformedBtnCheck(e);
+		
+		try {
+			if (e.getSource() == btnCheck) {
+				actionPerformedBtnCheck(e);
+			}
+		}catch (IndexOutOfBoundsException e1) {
+			JOptionPane.showMessageDialog(null, "주문하실 제품을 선택해주세요", "선택바람", JOptionPane.ERROR_MESSAGE);
 		}
+		
 		if (e.getSource() == btnLogout) {
 			actionPerformedBtnLogout(e);
 		}
@@ -112,11 +124,9 @@ public class CustomerList extends JFrame implements ActionListener {
 		}
 	}
 	protected void actionPerformedBtnInfo(ActionEvent e) {
-		//리스트서비스 버튼누르면 자동 넘어가기 
-//		System.out.println("List >>" +getId()); id 넘어오는지 확인.
-		List<Sales> list = sService.selectAddTotalPrice(id);		
+		list = sService.selectAddTotalPrice(id);		
 		System.out.println(getId());
-		System.out.println(list.get(0).getCuNo());
+		System.out.println(list.get(0).getCuNo().getCuNo());
 		CustomerInfoList frame = new CustomerInfoList();
 		frame.initlist2(list);
 //		id셋해주기
@@ -139,6 +149,14 @@ public class CustomerList extends JFrame implements ActionListener {
 		pTop.setItem(checkItem);		
 	}
 	protected void actionPerformedBtnBuy(ActionEvent e) {
+		pTop.vaildCheck();		
+		list = sService.selectAddTotalPrice(id);
+		int qty = pTop.getItem().getStock();		
+		Customer cuno = new Customer(list.get(0).getCuNo().getCuNo());	
+		Product code = new Product(pTop.getItem().getpCode());
+		Sales sale = new Sales(qty,cuno,code);
+		sService.insertOrder(sale);
+		pTop.setClear();
 		
 	}
 }

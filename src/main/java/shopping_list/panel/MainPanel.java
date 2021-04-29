@@ -34,20 +34,21 @@ public class MainPanel extends AbstractCustomTablePanel<Sales> {
 
 	@Override
 	protected void setAlignAndWidth() {
-		setTableCellAlign(SwingConstants.CENTER, 0, 1, 2, 3, 4, 5, 6, 7, 8);
+		setTableCellAlign(SwingConstants.CENTER, 0, 1, 2, 3, 4, 5, 6, 7);
+		setTableCellAlign(SwingConstants.RIGHT, 8);
 		setTableCellWidth(270, 100, 150, 150, 110, 270, 110, 100, 220);	
 	}
 	public void setService(SalesService service) {
 		this.service = service;
 	}
 
-
 	@Override
 	protected Object[] toArray(Sales t) {
 		return new Object[] 
 				{t.getDate(), t.getOrderNo(), t.getCuNo().getId(),
 				t.getCuNo().getCuNo(), t.getCuNo().getCuName(), t.getCuNo().getPhone(),
-				t.getpCode(), t.getOrderNum(), t.getSaleAmount()};
+				t.getpCode(), t.getOrderNum(),
+				String.format("%,d", t.getSaleAmount())};
 	}
 
 }

@@ -39,7 +39,7 @@ public class SalesImplTest {
 	}
 
 
-//	@Test
+	@Test
 	public void testSelectMain() {
 		System.out.printf("%s()%n", "testSelectMain");
 		List<Sales> salesList = dao.selectMain();
@@ -49,7 +49,7 @@ public class SalesImplTest {
 		}
 	}
 
-//	@Test
+	@Test
 	public void testSelectMainByDate() {
 		System.out.printf("%s()%n", "testSelectMainByDate");
 		Sales sales = new Sales("2012-04-14");
@@ -60,17 +60,17 @@ public class SalesImplTest {
 		}
 	}
 	
-//	@Test
+	@Test
 	public void testSelectProductAddTotalPrice() {
 		System.out.printf("%s()%n", "testSelectProductAddTotalPrice");
-		List<Sales> salesList = dao.selectProductAddTotalPrice("aaaa");
+		List<Sales> salesList = dao.selectProductAddTotalPrice("tkdrjs7");
 		Assert.assertNotNull(salesList);
 		for(Sales s :salesList) {
 			System.out.println(s.toStringP2());
 		}		
 	}
 
-//	@Test
+	@Test
 	public void testSelectProduct() {
 		System.out.printf("%s()%n", "testSelectProduct");
 		List<Sales> salesList = dao.selectProduct();
@@ -80,7 +80,7 @@ public class SalesImplTest {
 		}
 	}
 
-//	@Test
+	@Test
 	public void testSelectProductByPcode() {
 		System.out.printf("%s()%n", "testSelectProductByPcode");
 		List<Sales> list = dao.selectProductByPcode(new Product("PA"));
@@ -147,9 +147,17 @@ public class SalesImplTest {
 		System.out.printf("%s()%n", "testDeleteSales");
 		int res = dao.deleteSales(new Sales(11));
 		Assert.assertEquals(1, res);
-		System.out.println("success >>");
-		
+		System.out.println("success >>");	
 		
 	}
+	@Test
+	public void testInsertOrder() {
+		System.out.printf("%s()%n", "testInsertOrder");
+		Sales sale = new Sales(1, new Customer(12001), new Product("PA"));
+		int res = dao.insertByOrder(sale);
+		Assert.assertEquals(1, res);
+		System.out.println("success >>");
+		}
+	}
 
-}
+

@@ -4,6 +4,7 @@ import java.util.List;
 
 import shopping.dao.ProductDao;
 import shopping.dto.Product;
+import shopping.dto.Sales;
 import shopping.impl.ProductImpl;
 
 public class ProductService {

@@ -24,6 +24,10 @@ public class Product {
 		this.stock = stock;
 	}
 
+
+
+
+
 	public String getpCode() {
 		return pCode;
 	}

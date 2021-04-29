@@ -23,10 +23,10 @@ public class CustomerTopPanel extends JPanel implements ChangeListener  {
 	private JLabel lblRprice;
 	private JSpinner spStock;
 	private JLabel lblRTotal;
+	private JLabel lblRPcode;
 	
 	private DecimalFormat df = new DecimalFormat("#,###원");	
 	private ProductService service;
-	private JLabel lblRPcode;
 	
 	public CustomerTopPanel() {
 		service= new ProductService();
@@ -93,7 +93,7 @@ public class CustomerTopPanel extends JPanel implements ChangeListener  {
 		
 		
 	}
-	private void vaildCheck() {
+	public void vaildCheck() {
 		if(lblRpname.getText().equals("") || lblRprice.getText().equals(0) ||
 				spStock.getValue().equals(0) ) {
 			throw new InvaildCheckException();
@@ -104,6 +104,23 @@ public class CustomerTopPanel extends JPanel implements ChangeListener  {
 		lblRpname.setText(p.getpName().trim());
 		lblRprice.setText(p.getPrice() + "");
 		spStock.setValue(1);
+	}
+	
+	public void setClear() {
+		lblRPcode.setText("");
+		lblRpname.setText("");
+		lblRprice.setText("");
+		lblRTotal.setText("");
+		spStock.setModel(new SpinnerNumberModel(0, 0, 100, 1));
+		
+	}
+
+	public Product getItem() {
+		String code = lblRPcode.getText();
+		String name = lblRpname.getText();
+		int price = Integer.parseInt(lblRprice.getText());
+		int stock=(int) spStock.getValue();
+		return new Product(code,name,price,stock);
 	}
 
 

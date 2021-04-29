@@ -31,6 +31,7 @@ public interface SalesDao {
 	int insertSales(Sales sales);
 	int updateSales(Sales sales);
 	int deleteSales(Sales sales);
+	int insertByOrder(Sales sale);
 	
 	
 

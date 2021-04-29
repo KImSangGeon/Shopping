@@ -34,3 +34,5 @@ delete from sign_in where name = '김진';
 delete from customer_information where id = 'dkflfkd';
 
 select p_name , price, stock, Customer_Price from vw_shoppingmall where p_code ='pa' ;
+select order_no, cu_no, p_code, p_name, order_num, price, Customer_Price "
+				+ "from vw_shoppingmall where id = 'tkdrjs7';

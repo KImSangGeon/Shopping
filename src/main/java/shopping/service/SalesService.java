@@ -46,5 +46,10 @@ public class SalesService {
 		return dao.deleteSales(sales);
 	}
 
+	public int insertOrder(Sales sale) {
+		return dao.insertByOrder(sale);
+		
+	}
+
 	
 }

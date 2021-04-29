@@ -80,12 +80,13 @@ public class ProductAdd extends JFrame implements ActionListener {
 	protected void actionPerformedBtnCancel(ActionEvent e) {
 		setVisible(false);
 		TabbedUi frame = new TabbedUi();
-		frame.setVisible(true);		
-		
+		frame.setVisible(true);				
 	}
+	
 	protected void actionPerformedBtnReset(ActionEvent e) {
 		pItem.setProduct();
 	}
+	
 	protected void actionPerformedBtnAdd(ActionEvent e) {
 		Product newProduct = pItem.getProduct();
 		service.insertProduct(newProduct);

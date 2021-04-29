@@ -12,8 +12,8 @@ public class Sales {
 	private int customerPrice;
 	
 	public String toStringP2() {//product 상세
-		return String.format("%s, %s, %s, %s, %s, %s",
-				orderNo, pCode.getpCode(), pCode.getpName(), orderNum, pCode.getPrice(), customerPrice);
+		return String.format("%s, %s, %s, %s, %s, %s, %s",
+				orderNo, cuNo.getCuNo(), pCode.getpCode(), pCode.getpName(), orderNum, pCode.getPrice(), customerPrice);
 		
 	}
 	public String toStringP() {//product
@@ -68,8 +68,8 @@ public class Sales {
 		this.profit = profit;
 	}
 
-	public Sales(String date, Customer cuNo, Product pCode) {
-		this.date = date;
+	public Sales(int orderNum, Customer cuNo, Product pCode) {
+		this.orderNum = orderNum;
 		this.cuNo = cuNo;
 		this.pCode = pCode;
 	}
@@ -162,6 +162,8 @@ public class Sales {
 	public Sales(Product pCode) {
 		this.pCode = pCode;
 	}
+	
+	
 	public void setSaleAmount(int saleAmount) {
 		this.saleAmount = saleAmount;
 	}

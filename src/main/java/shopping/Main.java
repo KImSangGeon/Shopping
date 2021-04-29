@@ -150,7 +150,7 @@ public class Main extends JFrame implements ActionListener {
 		}else {
 			JOptionPane.showMessageDialog(null, "아이디, 비밀번호가 틀렸습니다.", "로그인 실패", JOptionPane.ERROR_MESSAGE);
 		}
-		}								
+		}							
 	
 	}
 	protected void actionPerformedBtnNew(ActionEvent e) {

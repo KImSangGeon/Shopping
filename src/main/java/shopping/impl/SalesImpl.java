@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JButton;
+
 import shopping.dao.SalesDao;
 import shopping.dto.Customer;
 import shopping.dto.Product;
@@ -151,7 +153,7 @@ public class SalesImpl implements SalesDao {
 
 	@Override
 	public List<Sales> selectProductAddTotalPrice(String id) {
-		String sql = "select order_no, p_code, p_name, order_num, price, Customer_Price "
+		String sql = "select order_no, cu_no, p_code, p_name, order_num, price, Customer_Price "
 				+ "from vw_shoppingmall where id = ?";
 		try(Connection con = JdbcConn.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql)){
@@ -310,7 +312,6 @@ public class SalesImpl implements SalesDao {
 
 	@Override
 	public int updateSales(Sales sales) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
@@ -327,6 +328,20 @@ public class SalesImpl implements SalesDao {
 		return 0;
 	}
 
-	
+	@Override
+	public int insertByOrder(Sales sale) {
+		String sql="insert into sales_information (date, order_num, cu_no, p_code) values"
+				+  " (now(), ?, ?,? )";
+		try(Connection con = JdbcConn.getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql)){
+			pstmt.setInt(1, sale.getOrderNum());
+			pstmt.setInt(2, sale.getCuNo().getCuNo());
+			pstmt.setString(3, sale.getpCode().getpCode());
+			return pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
 
 }

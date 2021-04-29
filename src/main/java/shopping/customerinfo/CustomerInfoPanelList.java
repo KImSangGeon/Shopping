@@ -47,7 +47,8 @@ public class CustomerInfoPanelList extends AbstractCustomTablePanel<Sales> {
 
 	@Override
 	protected void setAlignAndWidth() {
-		setTableCellAlign(SwingConstants.CENTER, 0, 1, 2, 3, 4, 5);
+		setTableCellAlign(SwingConstants.CENTER, 0, 1, 2, 3);
+		setTableCellAlign(SwingConstants.RIGHT, 4, 5);
 		setTableCellWidth(100, 100, 150, 100, 200, 200);		
 	}
 
@@ -56,7 +57,10 @@ public class CustomerInfoPanelList extends AbstractCustomTablePanel<Sales> {
 	protected Object[] toArray(Sales t) {
 		return new Object[] {
 				t.getOrderNo(),	t.getpCode().getpCode(), t.getpCode().getpName(),
-				t.getOrderNum(), t.getpCode().getPrice(), t.getCustomerPrice()};
+				t.getOrderNum(),
+				String.format("%,d", t.getpCode().getPrice()),
+				String.format("%,d", t.getCustomerPrice())
+				};
 	}
 
 }
