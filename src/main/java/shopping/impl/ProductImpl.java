@@ -70,7 +70,7 @@ public class ProductImpl implements ProductDao {
 		}
 		try {
 			pic = rs.getBytes("propic");
-			} catch (SQLException e1) {}
+			} catch (SQLException e) {}
 		return new Product(pCode, pName, price, stock, pic);
 	}
 

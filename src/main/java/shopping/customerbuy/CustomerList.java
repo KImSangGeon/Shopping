@@ -23,6 +23,7 @@ import shopping.service.ProductService;
 import shopping.service.SalesService;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
+import javax.swing.border.TitledBorder;
 
 public class CustomerList extends JFrame implements ActionListener{
 
@@ -57,7 +58,7 @@ public class CustomerList extends JFrame implements ActionListener{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(720, 300, 450, 463);
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBorder(new TitledBorder(null, "\uC1FC\uD551\uD398\uC774\uC9C0", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		

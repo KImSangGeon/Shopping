@@ -43,7 +43,7 @@ public class CustomerTopPanel extends JPanel implements ChangeListener  {
 		add(pPic, BorderLayout.CENTER);
 		pPic.setLayout(new GridLayout(0, 2, 0, 0));
 		
-		lblPic = new JLabel("New label");
+		lblPic = new JLabel("");
 		lblPic.setHorizontalAlignment(SwingConstants.CENTER);
 		pPic.add(lblPic);
 		

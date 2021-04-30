@@ -15,6 +15,7 @@ import shopping.dto.Sales;
 import shopping.service.SalesService;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.border.TitledBorder;
 
 @SuppressWarnings("serial")
 public class CustomerInfoList extends JFrame implements ActionListener {
@@ -47,7 +48,7 @@ public class CustomerInfoList extends JFrame implements ActionListener {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(720, 350, 450, 300);
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBorder(new TitledBorder(null, "마이페이지", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
 		

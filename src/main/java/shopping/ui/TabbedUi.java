@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 import shopping_list.DetailList;
 import shopping_list.Mainlist;
 import shopping_list.ProductList;
+import javax.swing.border.TitledBorder;
 
 public class TabbedUi extends JFrame {
 
@@ -30,6 +31,7 @@ public class TabbedUi extends JFrame {
 		contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.X_AXIS));
 		
 		JTabbedPane tPane = new JTabbedPane(JTabbedPane.TOP);
+		tPane.setBorder(new TitledBorder(null, "관리자페이지", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		contentPane.add(tPane);
 		
 		pMain = new Mainlist();

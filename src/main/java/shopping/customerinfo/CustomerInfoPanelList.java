@@ -11,8 +11,7 @@ import shopping_list.panel.AbstractCustomTablePanel;
 
 @SuppressWarnings("serial")
 public class CustomerInfoPanelList extends AbstractCustomTablePanel<Sales> {
-	public CustomerInfoPanelList() {
-	}
+	public CustomerInfoPanelList() {}
 
 	private SalesService service;
 	@Override

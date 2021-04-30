@@ -95,8 +95,11 @@ insert into sales_information(date, order_num, cu_no, p_code) values
 ('2021.04.26', 1, 12006,'PH'),
 ('2021.04.24', 5, 12007,'PD'),
 ('2021.04.26', 1, 12008,'PF');
+
+insert into sales_information (date, order_num, cu_no, p_code) values
+(now(), 1, '12001','PA');
+
+
 select * from customer_information ci ;
 select * from sales_information si ;
 select * from product_information pi2 ;
-insert into sales_information (date, order_num, cu_no, p_code) values
-(now(), 1, '12001','PA');

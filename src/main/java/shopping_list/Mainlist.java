@@ -126,7 +126,7 @@ public class Mainlist extends JPanel implements ActionListener {
 	}
 
 	protected void actionPerformedBtnLogout(ActionEvent e) {
-		int res = JOptionPane.showConfirmDialog(null, "", "맥주한잔?", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE,
+		int res = JOptionPane.showConfirmDialog(null, "오늘 하루도 고생하셨습니다.", "수고하셨습니다.", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE,
 				icon);
 
 		if (res == JOptionPane.YES_OPTION) {

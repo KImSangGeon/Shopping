@@ -22,6 +22,7 @@ import shopping.service.ProductService;
 import shopping.ui.TabbedUi;
 import shopping_list.panel.AddPanel;
 import shopping_list.panel.TopPicProduct;
+import javax.swing.border.TitledBorder;
 
 public class ProductAdd extends JFrame implements ActionListener {
 
@@ -60,7 +61,7 @@ public class ProductAdd extends JFrame implements ActionListener {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(650, 300, 600, 500);
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBorder(new TitledBorder(null, "제품추가페이지", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		

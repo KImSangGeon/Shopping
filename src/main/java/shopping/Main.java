@@ -133,7 +133,7 @@ public class Main extends JFrame implements ActionListener {
 		
 		TabbedUi frame = new TabbedUi();
 		frame.setVisible(true);				
-		JOptionPane.showMessageDialog(null, "헬게이트 오픈", "ㅠ.ㅠ", JOptionPane.WARNING_MESSAGE);		
+		JOptionPane.showMessageDialog(null, "출근 완료", "FIGHTING!", JOptionPane.WARNING_MESSAGE);		
 		
 		}else {
 		Sign login = loginItemS();
@@ -145,7 +145,7 @@ public class Main extends JFrame implements ActionListener {
 		CustomerList frame = new CustomerList();		
 		frame.setId(tFId.getText());
 		frame.setVisible(true);
-		JOptionPane.showMessageDialog(null, "환영합니다 고객님", "^.^", JOptionPane.INFORMATION_MESSAGE);
+		JOptionPane.showMessageDialog(null, "환영합니다 고객님", "WELCOME!", JOptionPane.INFORMATION_MESSAGE);
 		
 		}else {
 			JOptionPane.showMessageDialog(null, "아이디, 비밀번호가 틀렸습니다.", "로그인 실패", JOptionPane.ERROR_MESSAGE);
