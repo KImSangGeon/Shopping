@@ -2,8 +2,10 @@ package shopping.customerbuy;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.io.UnsupportedEncodingException;
 import java.text.DecimalFormat;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
@@ -105,6 +107,8 @@ public class CustomerTopPanel extends JPanel implements ChangeListener  {
 		lblRpname.setText(p.getpName().trim());
 		lblRprice.setText(p.getPrice() + "");
 		spStock.setValue(1);
+		ImageIcon icon = new ImageIcon(p.getProPic());
+		lblPic.setIcon(icon);
 	}
 	
 	public void setClear() {

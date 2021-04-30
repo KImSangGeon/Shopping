@@ -10,8 +10,10 @@ import shopping_list.panel.AbstractCustomTablePanel;
 
 @SuppressWarnings("serial")
 public class CustomerBuyPanel extends AbstractCustomTablePanel<Product> {
+	public CustomerBuyPanel() {
+	}
 		private ProductService service;
-		private CustomerTopPanel customTop;//
+		private CustomerTopPanel customTop;
 		
 		
 		public CustomerTopPanel getCustomTop() {
@@ -22,6 +24,7 @@ public class CustomerBuyPanel extends AbstractCustomTablePanel<Product> {
 			this.customTop = customTop;
 		}
 
+		
 	@Override
 	public Product getItem() {
 		int row = table.getSelectedRow();

@@ -18,6 +18,7 @@ public class CustomerInfoTop extends JPanel {
 	private JButton btnMain;
 	private JButton btnLogout;
 	private JButton btnCancel;
+	private JLabel lblPic;
 
 	public CustomerInfoTop() {
 
@@ -30,7 +31,7 @@ public class CustomerInfoTop extends JPanel {
 		add(pPic);
 		pPic.setLayout(new GridLayout(0, 2, 0, 0));
 		
-		JLabel lblPic = new JLabel("New Label");
+		lblPic = new JLabel("");
 		lblPic.setHorizontalAlignment(SwingConstants.CENTER);
 		pPic.add(lblPic);
 		
