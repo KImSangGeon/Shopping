@@ -26,7 +26,6 @@ insert into sign_in values
 insert into customer_information(ID, cu_name, birth, sex , phone) values
 ('tttt', '김민지', 20000403, '여성', '010-4444-3333');
 
-
 -- '김진이', 20010403,'010-4422-3313', '여성','pppp'
 select * from customer_information ci ;
 select  *from sign_in ;
@@ -36,3 +35,8 @@ delete from customer_information where id = 'dkflfkd';
 select p_name , price, stock, Customer_Price from vw_shoppingmall where p_code ='pa' ;
 select order_no, cu_no, p_code, p_name, order_num, price, Customer_Price "
 				+ "from vw_shoppingmall where id = 'tkdrjs7';
+		
+select * from product_information pi2 ;
+
+delete from product_information where p_code ='PT';
+select * from vw_shoppingmall vs ;

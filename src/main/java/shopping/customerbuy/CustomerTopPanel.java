@@ -25,6 +25,7 @@ public class CustomerTopPanel extends JPanel implements ChangeListener  {
 	private JLabel lblRTotal;
 	private JLabel lblRPcode;
 	
+	
 	private DecimalFormat df = new DecimalFormat("#,###원");	
 	private ProductService service;
 	
@@ -119,7 +120,7 @@ public class CustomerTopPanel extends JPanel implements ChangeListener  {
 		String code = lblRPcode.getText();
 		String name = lblRpname.getText();
 		int price = Integer.parseInt(lblRprice.getText());
-		int stock=(int) spStock.getValue();
+		int stock =(int) spStock.getValue();
 		return new Product(code,name,price,stock);
 	}
 

@@ -5,7 +5,7 @@
    si.order_no, si.p_code, 
    ci.cu_no, ci.cu_name, 
    ci.phone, ci.ID,
-   pi.p_name, pi.price, pi.stock,
+   pi.p_name, pi.price, pi.stock, pi.propic,
    (pi.price * si.order_num) as Customer_Price,
    (pi.price * si.order_num) *1.1 as Total_Sales,
    ((pi.price * si.order_num)* 1.1) - (pi.price * si.order_num) as Profit_Cost
@@ -47,4 +47,4 @@ select ID, password, name, birth, phone, sex, from sign_in ;
 select * from sign_in si;
 
 
-select p_code, p_name, order_num, price, Customer_Price from vw_shoppingmall;
+select p_code, p_name, order_num, price,  Customer_Price from vw_shoppingmall;

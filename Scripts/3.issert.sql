@@ -19,14 +19,14 @@ delete from product_information
 where p_code ='PA';
 -- 3
 insert into product_information values
-('PA', '책상', 10000, 3),
-('PB', '냉장고', 36000, 5),
-('PC', '세탁기', 22000, 2),
-('PD', 'VTR', 30000, 6),
-('PE', '자전거', 90000, 4),
-('PF', '시계', 6000, 10),
-('PG', 'TV', 8000, 5),
-('PH', '탁자', 3000, 6);
+('PA', '책상', 10000, 3, '책상.png'),
+('PB', '냉장고', 36000, 5, '냉장고.png'),
+('PC', '세탁기', 22000, 2, '세탁기.png'),
+('PD', 'VTR', 30000, 6, 'VTR.png'),
+('PE', '자전거', 90000, 4, '자전거.png'),
+('PF', '시계', 6000, 10, '시계.png'),
+('PG', 'TV', 8000, 5, 'TV.png'),
+('PH', '탁자', 3000, 6, '의자.png');
 
 
 -- 1
@@ -97,5 +97,6 @@ insert into sales_information(date, order_num, cu_no, p_code) values
 ('2021.04.26', 1, 12008,'PF');
 select * from customer_information ci ;
 select * from sales_information si ;
+select * from product_information pi2 ;
 insert into sales_information (date, order_num, cu_no, p_code) values
 (now(), 1, '12001','PA');

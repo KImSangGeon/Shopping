@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.swing.SwingConstants;
 
-import shopping.customerbuy.CustomerList;
 import shopping.dto.Sales;
 import shopping.exception.NotSelectedException;
 import shopping.service.SalesService;

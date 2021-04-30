@@ -47,6 +47,8 @@ public class ProductImpl implements ProductDao {
 		String pName = null;
 		int price = 0;
 		int stock = 0;
+		byte[] pic = null;
+		
 		try {
 			pCode = rs.getString("p_code");
 		} catch (SQLException e) {
@@ -66,7 +68,10 @@ public class ProductImpl implements ProductDao {
 			stock = rs.getInt("stock");
 		} catch (SQLException e) {
 		}
-		return new Product(pCode, pName, price, stock);
+		try {
+			pic = rs.getBytes("propic");
+			} catch (SQLException e1) {}
+		return new Product(pCode, pName, price, stock, pic);
 	}
 
 	@Override
@@ -88,13 +93,14 @@ public class ProductImpl implements ProductDao {
 
 	@Override
 	public int insertProduct(Product product) {
-		String sql = "insert into product_information values(?, ?, ?, ?)";
+		String sql = "insert into product_information values(?, ?, ?, ?, ?)";
 		try (Connection con = JdbcConn.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql)) {
 			pstmt.setString(1, product.getpCode());
 			pstmt.setString(2, product.getpName());
 			pstmt.setInt(3, product.getPrice());
 			pstmt.setInt(4, product.getStock());
+			pstmt.setBytes(5, product.getProPic());
 			return pstmt.executeUpdate();
 		} catch (SQLException e) {
 			throw new SqlConstraintException();
@@ -152,10 +158,11 @@ public class ProductImpl implements ProductDao {
 
 	@Override
 	public List<Product> selectPname() {
-		String sql = "select p_name from product_information";
+		String sql = "select p_code, p_name from product_information";
 		try(Connection con = JdbcConn.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql);
 						ResultSet rs = pstmt.executeQuery()){
+			System.out.println(pstmt);
 			if(rs.next()) {
 				ArrayList<Product> list = new ArrayList<Product>();
 				do {

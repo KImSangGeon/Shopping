@@ -6,6 +6,7 @@ public class Product {
 	private String pName;
 	private int price;
 	private int stock;
+	private byte[] proPic;
 	
 
 	public Product() {
@@ -25,7 +26,23 @@ public class Product {
 	}
 
 
+	public Product(String pCode, String pName, int price, int stock, byte[] proPic) {
+		this.pCode = pCode;
+		this.pName = pName;
+		this.price = price;
+		this.stock = stock;
+		this.proPic = proPic;
+	}
 
+
+	public byte[] getProPic() {
+		return proPic;
+	}
+
+
+	public void setProPic(byte[] proPic) {
+		this.proPic = proPic;
+	}
 
 
 	public String getpCode() {
@@ -86,8 +103,6 @@ public class Product {
 		
 //		return String.format("%s %s", pCode == null ? "" : pCode, pName == null ? "" : pName );
 	}
-
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -113,5 +128,7 @@ public class Product {
 			return false;
 		return true;
 	}
+
+
 		
 }

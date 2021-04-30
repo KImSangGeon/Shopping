@@ -60,6 +60,7 @@ public class DetailList extends JPanel implements ActionListener {
 		List<Customer> cusList = cService.selectByName();
 		List<Product> proList = pService.selectByPname();
 
+		System.out.println(proList);
 		cbPsearch.setModel(new DefaultComboBoxModel<Product>(new Vector<>(proList)));
 		cbPsearch.setSelectedIndex(-1);
 				

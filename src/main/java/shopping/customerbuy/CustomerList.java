@@ -21,8 +21,10 @@ import shopping.dto.Sign;
 import shopping.exception.InvaildCheckException;
 import shopping.service.ProductService;
 import shopping.service.SalesService;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseEvent;
 
-public class CustomerList extends JFrame implements ActionListener {
+public class CustomerList extends JFrame implements ActionListener{
 
 	private JPanel contentPane;
 	private CustomerTopPanel pTop;
@@ -59,11 +61,12 @@ public class CustomerList extends JFrame implements ActionListener {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
-		pTop = new CustomerTopPanel();
+		pTop = new CustomerTopPanel();			
 		contentPane.add(pTop, BorderLayout.NORTH);
 		pTop.setLayout(new GridLayout(0, 1, 0, 0));
 		
 		pList = new CustomerBuyPanel();
+		pList.setCustomTop(pTop);
 		pList.setService(service);
 		pList.loadData();
 		contentPane.add(pList, BorderLayout.CENTER);
@@ -146,7 +149,7 @@ public class CustomerList extends JFrame implements ActionListener {
 	}
 	protected void actionPerformedBtnCheck(ActionEvent e) {
 		Product checkItem = pList.getItem();
-		pTop.setItem(checkItem);		
+		pTop.setItem(checkItem);
 	}
 	protected void actionPerformedBtnBuy(ActionEvent e) {
 		pTop.vaildCheck();		

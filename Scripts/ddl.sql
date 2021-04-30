@@ -9,7 +9,8 @@ CREATE TABLE shoppingmall_prj.product_information (
 	p_code VARCHAR(13) NOT null COMMENT '제품코드', -- 제품코드
 	p_name VARCHAR(30) NULL     COMMENT '제품명', -- 제품명
 	price  INTEGER     NULL     COMMENT '단가', -- 단가
-	stock  INTEGER     NULL     COMMENT '재고' -- 재고
+	stock  INTEGER     NULL     COMMENT '재고', -- 재고
+	propic LONGBLOB NULL     COMMENT '상품사진' -- 상품사진
 )
 COMMENT '제품정보';
 
@@ -102,4 +103,4 @@ ALTER TABLE shoppingmall_prj.sales_information
 		REFERENCES shoppingmall_prj.product_information ( -- 제품정보
 			p_code -- 제품코드
 		);
-		
+-- 		11212

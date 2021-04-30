@@ -1,5 +1,10 @@
 package shopping.impl;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 import org.junit.After;
@@ -78,13 +83,27 @@ public class ProductImplTest {
 	@Test
 	public void test01InsertProduct() {
 		System.out.printf("%s()%n", "testInsertProduct");
-		Product newProduct = new Product("PI", "드론", 3000000, 4);
+		Product newProduct = new Product("PI", "드론", 3000000, 4, getImage("NoImage.jpg"));
 		int res = dao.insertProduct(newProduct);
 		Assert.assertEquals(1, res);
 		System.out.println(dao.selectByProInfo(newProduct));
 
 	}
 
+	private byte[] getImage(String imgName) {
+		byte[] pic = null;
+		// images/imgName
+		File file = new File(System.getProperty("user.dir") + File.separator + "images", imgName);
+		try(InputStream is = new FileInputStream(file)){
+			pic = new byte[is.available()];   //file로 부터 읽은 이미지의 바이트길이로 배열 생성
+			is.read(pic);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return pic;
+	}
 	@Test
 	public void test02UpdateProduct() {
 		System.out.printf("%s()%n", "testUpdateProduct");
